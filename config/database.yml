@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  database: waveson
+  username: cbatsoula
+  password: noHACKER
+  encoding: unicode
+  host: localhost
+  pool: 5
+test:
+  adapter: postgresql
+  database: waveson
+  username: cbatsoula
+  password: noHACKER
+  encoding: unicode
+  host: localhost
+  pool: 5
