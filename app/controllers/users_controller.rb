@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
+
   def index
     users = User.all
     render json: users
@@ -21,7 +22,6 @@ class UsersController < ApplicationController
 
   end
 
-
   def update
     user = User.find(params[:id])
     user.update(location: params[:location])
@@ -29,4 +29,6 @@ class UsersController < ApplicationController
 
     render json: user
   end
+
+
 end

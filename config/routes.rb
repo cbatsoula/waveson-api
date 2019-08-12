@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :beaches
 
   patch 'users/:id', to: "users#update"
+  post '/signup', to: "users#create"
+  post '/login', to: "auth#login"
 
   post 'beaches', to: "beaches#create"
 end
