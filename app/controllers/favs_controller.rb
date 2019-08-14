@@ -21,4 +21,10 @@ class FavsController < ApplicationController
     end
 
   end
+
+  def destroy
+    fav = Fav.find(params[:id])
+    fav.destroy
+    render json: fav
+  end
 end

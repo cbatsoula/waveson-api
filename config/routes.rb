@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :beaches
   resources :favs
 
-  patch 'users/:id', to: "users#update"
+  patch '/users/:id', to: "users#update"
+  delete '/favs/:id', to: "favs#destroy"
   post '/signup', to: "users#create"
   post '/login', to: "auth#login"
 
