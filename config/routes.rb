@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :beaches
   resources :favs
+  resources :notes
 
   patch '/users/:id', to: "users#update"
   delete '/favs/:id', to: "favs#destroy"
