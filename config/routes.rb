@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :beaches
   resources :favs
   resources :notes
+  resources :tags
+
+  resources :note_tags
 
   patch '/users/:id', to: "users#update"
   delete '/favs/:id', to: "favs#destroy"
@@ -13,4 +16,5 @@ Rails.application.routes.draw do
   patch '/notes/:id', to: "notes#update"
 
   post 'beaches', to: "beaches#create"
+  
 end

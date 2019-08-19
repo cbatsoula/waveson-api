@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   def index
     notes = Note.all
-    render json: notes
+    render json: Note.all.to_json(:include => :tags)
   end
 
   def show
@@ -13,7 +13,9 @@ class NotesController < ApplicationController
 
   def create
     note = Note.new(user_id: params[:user_id], beach_id: params[:beach_id], note: params[:note])
+
     if note.save
+      Note.last.tags << Tag.last
       render json: note
     else
       render json: {errors: note.errors.full_messages}
