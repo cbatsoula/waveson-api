@@ -12,7 +12,7 @@ class NotesController < ApplicationController
   end
 
   def create
-    note = Note.new(user_id: params[:user_id], beach_id: params[:beach_id], note: params[:note])
+    note = Note.new(user_id: params[:user_id], beach_id: params[:beach_id], note: params[:note], photo: params[:photo])
 
     if note.save
       Note.last.tags << Tag.last
