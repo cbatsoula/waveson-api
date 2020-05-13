@@ -1,6 +1,7 @@
 {
   "name": "test-waveson-api",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {}
   "scripts": {
     "build": "cd client && yarn install && yarn build && cd ..",
