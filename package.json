@@ -4,7 +4,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {},
   "scripts": {
-    "build": "cd waveson && yarn install && yarn build",
+    "build": "cd waveson && yarn install && yarn build && cd ..",
     "deploy": "cp -a waveson/build/. public/",
     "postinstall": "yarn build && yarn deploy"
   },
