@@ -1,15 +1,21 @@
 {
-  "name": "test-waveson-api",
+  "name": "waveson",
   "private": true,
   "proxy": "http://localhost:3001",
-  "dependencies": {}
+  "dependencies": {},
   "scripts": {
-    "build": "cd client && yarn install && yarn build && cd ..",
-    "deploy": "cp -a client/build/. public/",
+    "build": "cd waveson && yarn install && yarn build",
+    "deploy": "cp -a waveson/build/. public/",
     "postinstall": "yarn build && yarn deploy"
   },
   "engines": {
     "yarn": "1.22.4",
     "node": "12.13.1"
   },
+  "version": "1.0.0",
+  "description": "marine weather tracking app with journaling feature",
+  "main": "index.js",
+  "repository": "git@github.com:cbatsoula/waveson-api.git",
+  "author": "cbatsoula",
+  "license": "MIT"
 }
