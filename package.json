@@ -8,9 +8,5 @@
   "repository": "git@github.com:cbatsoula/waveson-api.git",
   "author": "cbatsoula",
   "license": "MIT",
-  "scripts": {
-    "build": "cd waveson && yarn install && yarn build && cd ..",
-    "deploy": "cp -a waveson/build/. public/",
-    "postinstall": "yarn build && yarn deploy && echo 'Client built!'"
-  },
+
 }
