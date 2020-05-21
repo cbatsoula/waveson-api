@@ -16,8 +16,5 @@ Rails.application.routes.draw do
   patch '/notes/:id', to: "notes#update"
 
   post 'beaches', to: "beaches#create"
-  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
-    !request.xhr? && request.format.html?
-  end
-
+  
 end
