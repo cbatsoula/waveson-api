@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_153723) do
   create_table "notes_tags", id: false, force: :cascade do |t|
     t.bigint "tag_id", null: false
     t.bigint "note_id", null: false
+    t.index ["tag_id", "note_id"], name: "index_notes_tags_on_tag_id_and_note_id"
   end
 
   create_table "tags", force: :cascade do |t|
