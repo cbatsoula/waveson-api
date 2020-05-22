@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < ApiController
   skip_before_action :verify_authenticity_token
 
   def index

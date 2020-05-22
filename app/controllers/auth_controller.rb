@@ -1,4 +1,4 @@
-class AuthController < ApplicationController
+class AuthController < ApiController
   skip_before_action :verify_authenticity_token
 
   def login

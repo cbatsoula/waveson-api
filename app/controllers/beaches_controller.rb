@@ -1,4 +1,4 @@
-class BeachesController < ApplicationController
+class BeachesController < ApiController
   skip_before_action :verify_authenticity_token
 
   def index

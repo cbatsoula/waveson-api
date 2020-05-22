@@ -1,4 +1,4 @@
-class FavsController < ApplicationController
+class FavsController < ApiController
   skip_before_action :verify_authenticity_token
 
   def show

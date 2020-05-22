@@ -1,4 +1,4 @@
-class TagsController < ApplicationController
+class TagsController < ApiController
   skip_before_action :verify_authenticity_token
 
   def index
