@@ -1,5 +1,5 @@
-class BeachesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class BeachesController < ApiController
+  # skip_before_action :verify_authenticity_token
 
   def index
     beaches = Beach.all
