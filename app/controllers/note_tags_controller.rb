@@ -1,5 +1,5 @@
-class NoteTagsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class NoteTagsController < ApiController
+  # skip_before_action :verify_authenticity_token
 
   def index
     # note = Note.all

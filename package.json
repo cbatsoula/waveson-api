@@ -1,5 +1,21 @@
 {
   "name": "test-waveson-api",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "version": "1.0.0",
+  "description": "marine weather tracking app with journaling and photo uploading feature",
+  "main": "index.js",
+  "repository": "git@github.com:cbatsoula/waveson-api.git",
+  "author": "cbatsoula",
+  "license": "MIT",
+  "engines": {
+    "node": "12.13.1",
+    "yarn": "1.22.4",
+  },
+  "scripts": {
+   "build": "yarn --cwd client install && yarn --cwd client build",
+   "deploy": "cp -a client/build/. public/",
+   "heroku-postbuild": "yarn build && yarn deploy"
+ }
+
 }

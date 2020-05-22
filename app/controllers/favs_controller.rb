@@ -1,5 +1,5 @@
-class FavsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+class FavsController < ApiController
+  # skip_before_action :verify_authenticity_token
 
   def show
     fav = Fav.find(params[:id])
