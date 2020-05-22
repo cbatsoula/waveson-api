@@ -152,7 +152,7 @@ class App extends React.Component {
 
   signUpUser = (input) => {
     if (input.password === input.passwordConfirmation) {
-      fetch('/api/signup', {
+      fetch('/signup', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -332,7 +332,7 @@ class App extends React.Component {
 
           <Switch>
 
-            <Route path='/api/signup' render={() => <SignUp setUser={this.setUser} signUpUser={this.signUpUser}/>} />
+            <Route path='/signup' render={() => <SignUp setUser={this.setUser} signUpUser={this.signUpUser}/>} />
             {
               this.state.beachData
               ?
