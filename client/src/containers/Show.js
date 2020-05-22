@@ -6,8 +6,6 @@ import NoteStuff from './NoteStuff';
 // import why from './why.html';
 
 
-  const WORLD_API_KEY = `${process.env.REACT_APP_WORLD_API_KEY}`
-
 
 
 class Show extends React.Component {
@@ -18,7 +16,7 @@ class Show extends React.Component {
 
   componentDidMount() {
 
-    fetch(`https://api.worldweatheronline.com/premium/v1/marine.ashx?tide=yes&key=${WORLD_API_KEY}&format=json&q=${this.props.currentBeach.geometry.location.lat},${this.props.currentBeach.geometry.location.lng}`)
+    fetch(`https://api.worldweatheronline.com/premium/v1/marine.ashx?tide=yes&key=${process.env.REACT_APP_WORLD_API_KEY}&format=json&q=${this.props.currentBeach.geometry.location.lat},${this.props.currentBeach.geometry.location.lng}`)
       .then( r => r.json() )
       .then( data => {
         this.setState({

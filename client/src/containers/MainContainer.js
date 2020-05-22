@@ -3,7 +3,6 @@ import Banner from '../components/Banner';
 import BeachContainer from './BeachContainer';
 import FavContainer from './FavContainer';
 
-const API_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`
 
 
 class MainContainer extends React.Component {

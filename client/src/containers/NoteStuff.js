@@ -31,7 +31,7 @@ class NoteStuff extends React.Component {
   })
 
   if (this.state.select){
-    fetch(`http://localhost:3000/notes/${this.state.oneNote.id}`, {
+    fetch(`/api/notes/${this.state.oneNote.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ class NoteStuff extends React.Component {
     let thisOne = this.props.allBeaches.find(beach => {
       return beach.name === this.props.currentBeach.name
     })
-    fetch(`http://localhost:3000/tags`, {
+    fetch(`/api/tags`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ class NoteStuff extends React.Component {
     // would need at least one arg, the id, to find from the time of
     // submit to push it up
     // let thisPhoto = this.state.photoInfo[0].secure_url
-    fetch("http://localhost:3000/notes", {
+    fetch("/api/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -158,7 +158,7 @@ class NoteStuff extends React.Component {
     })
     let userID = this.props.currentUser.id
     console.log("userID", userID)
-    fetch('http://localhost:3000/notes')
+    fetch('/api/notes')
       .then( r => r.json())
       .then( stuff => {
         let findFromNotes = stuff.filter( note => {
@@ -178,7 +178,7 @@ class NoteStuff extends React.Component {
       return beach.name === this.props.currentBeach.name
     })
     let userID = this.props.currentUser.id
-    fetch('http://localhost:3000/tags')
+    fetch('/api/tags')
       .then( r => r.json())
       .then( stuff => {
         let findFromTags = stuff.filter( tag => {
@@ -210,7 +210,7 @@ class NoteStuff extends React.Component {
 
   handleDelete = (thing) => {
   // console.log("delete this review", thing.id)
-   fetch(`http://localhost:3000/notes/${thing.id}`, {
+   fetch(`/api/notes/${thing.id}`, {
      method: "DELETE",
    })
      .then( r => r.json())
