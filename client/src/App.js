@@ -109,6 +109,7 @@ class App extends React.Component {
 
 
       this.fetchFavs()
+      this.fetchNotes()
   }
 
   beachesFromUserLoc() {
