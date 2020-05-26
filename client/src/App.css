@@ -185,7 +185,8 @@ button:active {
 }
 
 .Show {
-
+  display: flex;
+  width: 100%;
   background-color: #639898;
 
 }
@@ -212,7 +213,7 @@ button:active {
   display: flex;
   /* background-color: #639898; */
   height: 70%;
-  width: 80%;
+  width: 100%;
   background-color: #dee3cc;
   /* border-color: #6b5882; */
   border-color: #c9a865 #a8ab61 #3f406e #a8ab61;
