@@ -356,7 +356,7 @@ class App extends React.Component {
 
             <Route path='/loader' render={() => <Loader />} />
 
-            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} />} />
+            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} allBeaches={this.state.allBeaches} />} />
 
           </Switch>
           <Route exact path='/home' render={(routerProps) => <MainContainer {...routerProps} selectBeach={this.selectBeach} beachData={this.state.beachData.results} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} currentUser={this.state.currentUser} doTheThing={this.doTheThing} theFavs={this.doTheThing()} />} />

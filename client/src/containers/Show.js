@@ -6,8 +6,6 @@ import NoteStuff from './NoteStuff';
 // import why from './why.html';
 
 
-
-
 class Show extends React.Component {
   state = {
     stats: [],
