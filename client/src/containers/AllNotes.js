@@ -13,11 +13,11 @@ class AllNotes extends React.Component {
   render () {
     console.log("AllNotes", this.props)
     return (
-      <div className="Note-Container">
+      <>
       <div className="Banner">
       <Banner title={"All Notes"} />
       </div>
-        <>
+      <div className="Note-Container">
         {
           this.props.allNotes
           ?
@@ -25,8 +25,8 @@ class AllNotes extends React.Component {
           :
           null
         }
-        </>
       </div>
+      </>
 
     )
   }
