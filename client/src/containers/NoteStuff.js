@@ -114,7 +114,7 @@ class NoteStuff extends React.Component {
     // would need at least one arg, the id, to find from the time of
     // submit to push it up
     // let thisPhoto = this.state.photoInfo[0].secure_url
-    fetch("/notes", {
+    fetch("/api/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ class NotesController < ApiController
     note = Note.new(user_id: params[:user_id], beach_id: params[:beach_id], note: params[:note], photo: params[:photo])
 
     if note.save
-      Note.last.tags << Tag.last
+      # Note.last.tags << Tag.last
       render json: note
     else
       render json: {errors: note.errors.full_messages}
