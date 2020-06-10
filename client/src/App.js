@@ -32,22 +32,27 @@ class App extends React.Component {
     // let thisOne = this.state.allBeaches.find(beach => {
     //   return beach.name === this.state.currentBeach.name
     // })
-    fetch('/api/notes')
+    if (this.state.currentUser) {
+      fetch('/api/notes')
       .then( r => r.json())
       .then( stuff => {
-          let findFromNotes = stuff.filter( note => {
-            return note.user_id === this.state.currentUser.id
+        let findFromNotes = stuff.filter( note => {
+          return note.user_id === this.state.currentUser.id
 
-            //from this container of notes I want to only display the notes with the note.user_id to be equal === to whoever is currentUser.id
-          })
-          // console.log("pls", findFromNotes)
-          // console.log("userID", userID)
+          //from this container of notes I want to only display the notes with the note.user_id to be equal === to whoever is currentUser.id
+        })
+        // console.log("pls", findFromNotes)
+        // console.log("userID", userID)
         console.log("APP FETCH NOTES----------", findFromNotes)
         this.setState({
           allNotes: findFromNotes
         })
 
       })
+
+    } else {
+      console.log("fetchNotes - app state", this.state)
+    }
     // let userID = this.state.currentUser.id
     // fetch('http://localhost:3000/notes')
     //   .then( r => r.json())

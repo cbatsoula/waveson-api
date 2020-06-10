@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   post '/signup', to: "users#create"
   post '/login', to: "auth#login"
 
-  patch '/api/notes/:id', to: "notes#update"
 
   post '/api/beaches', to: "beaches#create"
+  post '/api/notes', to: "notes#create"
 
-  scope '/api' do
+  scope '/api/' do
     resources :users
     resources :beaches
     resources :favs
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     resources :note_tags
   end
+  patch '/api/notes/:id', to: "notes#update"
 
 
 end
