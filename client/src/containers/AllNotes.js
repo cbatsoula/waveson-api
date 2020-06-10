@@ -9,7 +9,7 @@ class AllNotes extends React.Component {
   }
 
   renderNoteCards = () => {
-    return this.props.allNotes.map( note => {
+    return this.state.allNotes.map( note => {
       return <NoteCard note={note} key={note.id} />
     })
   }
@@ -52,7 +52,7 @@ class AllNotes extends React.Component {
       </div>
       <div className="AllNote-Container">
         {
-          this.props.allNotes
+          this.state.allNotes
           ?
           this.renderNoteCards()
           :
