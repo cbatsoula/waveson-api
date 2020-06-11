@@ -306,14 +306,6 @@ button:active {
   color: #639898;
 }
 
-@media screen and (max-width: 600px){
-    .Login-Container {
-      /* For mobile phones: */
-      background: #6b5882;
-
-    }
-
-}
 
 .Login-Container {
   box-shadow: 0 4px 5px 0 rgba(0, 0.8, 0.8, 0.8);
@@ -337,6 +329,16 @@ button:active {
 
   margin: auto;
   color: #639898;
+}
+/* Place breakpoint params AFTER the main css block - then it renders!*/
+@media screen and (min-width:480px){
+  .Login-Container {
+    /* For mobile phones: */
+    background: #6b5882;
+
+
+  }
+
 }
 
 .Login-Sub {
