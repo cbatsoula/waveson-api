@@ -306,10 +306,17 @@ button:active {
   color: #639898;
 }
 
+@media screen and (max-width: 600px){
+    .Login-Container {
+      /* For mobile phones: */
+      background: #6b5882;
+
+    }
+
+}
+
 .Login-Container {
   box-shadow: 0 4px 5px 0 rgba(0, 0.8, 0.8, 0.8);
-  transition: 0.3s;
-
   display: flex;
   height: 15vh;
   align-items: center;
