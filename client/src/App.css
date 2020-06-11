@@ -148,6 +148,35 @@ button:active {
   align-content: stretch;
 }
 
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+    .Beach-Card {
+      /* For mobile phones: */
+      width: 100%;
+      display: flex;
+      background-color: #dee3cc;
+
+      height: 37vh;
+      color: #976224;
+      font-size: 15px;
+      justify-items: space-evenly;
+      margin: 5px;
+      padding: 2%;
+      word-break: normal;
+      align-content: stretch;
+
+      border-radius: 10px;
+      border: 2px outset #6E7B66;
+
+      flex-grow: 1;
+      flex-basis: 20%;
+    }
+
+}
+
+
 .FavContainer {
   display: flex;
   height: 100%;
