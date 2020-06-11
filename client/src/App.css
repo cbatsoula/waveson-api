@@ -211,16 +211,16 @@ button:active {
 
 .Beach-Details {
   display: flex;
-  /* background-color: #639898; */
+
   height: 100%;
-  width: 100%;
+  width: auto;
   background-color: #dee3cc;
   /* border-color: #6b5882; */
   border-color: #c9a865 #a8ab61 #3f406e #a8ab61;
   color: #976224;
   font-size: 25px;
-  justify-content: space-evenly;
-  /* margin: auto; */
+  justify-content: center;
+
   padding: 2%;
 
   border-radius: 10px;
@@ -229,6 +229,8 @@ button:active {
   margin: 10px;
   flex-wrap: wrap;
   flex-direction: column;
+  align-content: center;
+  text-align: center;
 }
 
 .Hourly {
@@ -237,9 +239,10 @@ button:active {
   /* margin: auto; */
   padding: 2%;
   height: 80%;
-  width: 80%;
+  width: auto;
   flex-wrap: wrap;
   flex-direction: column;
+  margin: 10px;
 
 }
 
