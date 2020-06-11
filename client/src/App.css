@@ -226,16 +226,21 @@ button:active {
   border-radius: 10px;
   border-style: groove;
   border-width: 5px;
-  margin: 70px;
+  margin: 10px;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .Hourly {
   display: flex;
   justify-content: space-evenly;
-  margin: auto;
+  /* margin: auto; */
   padding: 2%;
   height: 80%;
   width: 80%;
+  flex-wrap: wrap;
+  flex-direction: column;
+
 }
 
 .Hourly-Time {
@@ -375,7 +380,8 @@ button:active {
   color: #dee3cc;
 
   margin: 30px;
-  height: 700px;
+  /* height: 700px; */
+  height: auto;
   width: 90%;
   /* flex-wrap: wrap; */
   flex-direction: column;

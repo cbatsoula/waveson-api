@@ -90,6 +90,7 @@ class BeachDetails extends React.Component {
       </div>
 
       <div className="Beach-Details">
+      <p>Today's General Weather</p>
         <ul>
           <li>Today's high: {this.props.today.maxtempF} F / {this.props.today.maxtempC} C</li>
           <li>Today's low: {this.props.today.mintempF} F / {this.props.today.mintempC} C</li>
@@ -101,11 +102,11 @@ class BeachDetails extends React.Component {
           <li>Sunrise: {this.props.today.astronomy[0].sunrise}</li>
 
         </ul>
-        <div className="Hourly">
-          {this.renderWeather()}
         </div>
-
+      <div className="Hourly">
+        {this.renderWeather()}
       </div>
+
       </>
     )
   }
