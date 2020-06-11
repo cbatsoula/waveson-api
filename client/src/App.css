@@ -331,10 +331,21 @@ button:active {
   color: #639898;
 }
 /* Place breakpoint params AFTER the main css block - then it renders!*/
-@media screen and (min-width:480px){
+@media screen and (max-width:760px){
   .Login-Container {
     /* For mobile phones: */
     background: #6b5882;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border-color: #E8E0CC;
+
+
+
+
 
 
   }
