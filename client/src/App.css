@@ -117,7 +117,8 @@ button:active {
 }
 
 .Main-Container {
-
+  height: auto;
+  background-color: #639898;
 }
 
 .Banner {
@@ -138,27 +139,29 @@ button:active {
   background-color: #639898;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 95%;
   justify-content: space-around;
   flex-direction: row;
   padding: 10px;
   font-size: 25px;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 8px;
   align-content: stretch;
 }
+@media screen and (max-width:760px){
+  .Beach-Container {
+    /* For mobile phones: */
+    background-color: #639898;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
 
-@media screen
-  and (device-width: 360px)
-  and (device-height: 640px) {
-    .Beach-Card {
-      /* For mobile phones: */
-      width: 100%;
-
-    }
+  }
 
 }
-
 
 .FavContainer {
   display: flex;
@@ -172,6 +175,21 @@ button:active {
   flex-wrap: wrap;
   margin: auto;
   align-content: stretch;
+}
+
+@media screen and (max-width:760px){
+  .FavContainer {
+    /* For mobile phones: */
+    background-color: #639898;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+  }
+
 }
 
 .Beach-Card {
@@ -192,6 +210,15 @@ button:active {
   /* border-width: 5px ; */
   flex-grow: 1;
   flex-basis: 20%;
+
+}
+
+@media screen and (max-width:760px) {
+    .Beach-Card {
+      /* For mobile phones: */
+      width: 100%;
+
+    }
 
 }
 
@@ -342,11 +369,6 @@ button:active {
     flex-wrap: wrap;
     border-radius: 10px;
     border-color: #E8E0CC;
-
-
-
-
-
 
   }
 
