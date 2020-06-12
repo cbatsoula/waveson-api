@@ -35,34 +35,15 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: 0 7px 0 #476e6e;
-  /* box-shadow: 0 4px 5px 0 rgba(0, 0, 0.5, 0.5);
-  transition: 0.5s; */
-
-  /* display: flex; */
-  /* padding: 5%; */
-  /* justify-content: space-between; */
-  /* width: 83%; */
-  /* padding: 16px 32px; */
-  /* padding: 1rem 2rem; */
-
-    /* display: inline-block;
-    border-radius: 10px;
-    border-style: groove;
-    border-width: 5px;
-    padding: 1rem 2rem;
-    margin: 0;
-    text-decoration: none;
-    background: #727a49;
-    color: #ffffff;
-
-    /* font-size: 1.15rem;
-    line-height: 1;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none; */
 }
+@media screen and (max-width:760px){
+  button {
+    /* For mobile phones: */
+    font-size: 15px;
+    width: 18vw;
+  }
+}
+
 
 button:hover,
 button:focus {
@@ -100,6 +81,12 @@ button:active {
   color: #dee3cc;
   text-decoration: none;
 }
+@media screen and (max-width:760px){
+  .logo {
+    /* For mobile phones: */
+    font-size: 25px;
+  }
+}
 
 .logo:hover {
   color: #3f4a38;
@@ -115,6 +102,7 @@ button:active {
   justify-content: space-between;
   color: #3f4a38;
 }
+
 
 .Main-Container {
   height: auto;
@@ -230,6 +218,17 @@ button:active {
   flex-wrap: wrap;
   flex-direction: row;
 }
+@media screen and (max-width:760px){
+  .Show {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+    background-color: #639898;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+  }
+}
 
 .Show-Details {
   display: flex;
@@ -241,6 +240,20 @@ button:active {
   /* margin: auto; */
   padding: 1%;
 
+}
+@media screen and (max-width:760px){
+  .Show-Details {
+    /* For mobile phones: */
+    display: flex;
+    background-color: #639898;
+    width: 100%;
+    margin: 5px;
+
+    font-size: 25px;
+    justify-content: center;
+    /* margin: auto; */
+    padding: 2%;
+  }
 }
 
 .Save-bttn {
@@ -271,6 +284,18 @@ button:active {
   flex-direction: column;
   align-content: center;
   text-align: center;
+}
+@media screen and (max-width:760px){
+  .Beach-Details {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+
+    font-size: 20px;
+    justify-content: stretch;
+    margin: 2%;
+    padding: 2%;
+  }
 }
 
 .Hourly {
