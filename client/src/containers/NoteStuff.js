@@ -21,78 +21,80 @@ class NoteStuff extends React.Component {
     idkmydude: null,
   }
 
+//lifted to app
+  // handleSubmit = event => {
+  // event.preventDefault();
+  //
+  //
+  // let thisOne = this.props.allBeaches.find(beach => {
+  //   return beach.name === this.props.currentBeach.name
+  // })
+  //
+  // if (this.props.select){
+  //   fetch(`/api/notes/${this.props.oneNote.id}`, {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Access-Control-Allow-Methods": "PATCH",
+  //       "Access-Control-Allow-Origin": "http://localhost"
+  //     },
+  //     body: JSON.stringify({
+  //       note: this.props.note,
+  //       user_id: this.props.currentUser.id,
+  //       beach_id: thisOne.id,
+  //      })
+  //   })
+  //     .then(r => r.json())
+  //     .then(data => {
+  //       // console.log("data", data)
+  //       //update one object in state array
+  //       let updatedNotes = this.state.allNotes.map(note => {
+  //         if (note.id === this.props.oneNote.id){
+  //           return this.props.oneNote
+  //         } else {
+  //           return note
+  //         }
+  //       })
+  //       this.setState({
+  //         note: "",
+  //         allNotes: updatedNotes,
+  //         select: false,
+  //       })
+  //     })
+  //
+  // } else {
+  //   this.postNotes()
+  //   // this.postTags()
+  //   }
+  // };
 
-  handleSubmit = event => {
-  event.preventDefault();
 
-
-  let thisOne = this.props.allBeaches.find(beach => {
-    return beach.name === this.props.currentBeach.name
-  })
-
-  if (this.state.select){
-    fetch(`/api/notes/${this.state.oneNote.id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Methods": "PATCH",
-        "Access-Control-Allow-Origin": "http://localhost"
-      },
-      body: JSON.stringify({
-        note: this.state.note,
-        user_id: this.props.currentUser.id,
-        beach_id: thisOne.id,
-       })
-    })
-      .then(r => r.json())
-      .then(data => {
-        // console.log("data", data)
-        //update one object in state array
-        let updatedNotes = this.state.allNotes.map(note => {
-          if (note.id === this.state.oneNote.id){
-            return this.state.oneNote
-          } else {
-            return note
-          }
-        })
-        this.setState({
-          note: "",
-          allNotes: updatedNotes,
-          select: false,
-        })
-      })
-
-  } else {
-    this.postNotes()
-    // this.postTags()
-    }
-  };
-
-  postTags = () => {
-    let thisOne = this.props.allBeaches.find(beach => {
-      return beach.name === this.props.currentBeach.name
-    })
-    fetch(`/api/tags`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        tag: this.state.tag,
-        user_id: this.props.currentUser.id,
-        beach_id: thisOne.id,
-      })
-    })
-      .then( res => res.json())
-      .then( data => {
-        console.log("back from post tag", data)
-        this.setState({
-          tag: "",
-          allTags: [...this.state.allTags, data]
-        }, () => {console.log("POSTED TAG", this.state.allTags)})
-      })
-  }
+//not inn use
+  // postTags = () => {
+  //   let thisOne = this.props.allBeaches.find(beach => {
+  //     return beach.name === this.props.currentBeach.name
+  //   })
+  //   fetch(`/api/tags`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       tag: this.state.tag,
+  //       user_id: this.props.currentUser.id,
+  //       beach_id: thisOne.id,
+  //     })
+  //   })
+  //     .then( res => res.json())
+  //     .then( data => {
+  //       console.log("back from post tag", data)
+  //       this.setState({
+  //         tag: "",
+  //         allTags: [...this.state.allTags, data]
+  //       }, () => {console.log("POSTED TAG", this.state.allTags)})
+  //     })
+  // }
 
   ifPhoto = () => {
     if (this.state.photoInfo){
@@ -102,50 +104,44 @@ class NoteStuff extends React.Component {
     }
   }
 
-  postNotes = () => {
-    let thisOne = this.props.allBeaches.find(beach => {
-      return beach.name === this.props.currentBeach.name
-    })
-    // this.setState({
-    //
-    // })
-    // perhaps make another function, add Note, that looks through
-    // allNotes and places this newly made note to the tip top
-    // would need at least one arg, the id, to find from the time of
-    // submit to push it up
-    // let thisPhoto = this.state.photoInfo[0].secure_url
-    fetch("/api/notes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        note: this.state.note,
-        user_id: this.props.currentUser.id,
-        beach_id: thisOne.id,
-        photo: this.ifPhoto(),
-      })
-    })
-      .then(res => res.json())
-      .then(data => {
-        // this.fetchNotes()
-        // console.log("back from post", data)
-        this.setState({
-          note: " ",
-          select: false,
-          allNotes: [data, ...this.state.allNotes]
-        }
-        , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
-       )
-        console.log("POSTED NOTE", this.state.allNotes)
-
-        // this.setState({
-        //   reviews: [...this.state.reviews, data],
-        //   select: false,
-        // })
-      });
-  }
+  // postNotes = () => {
+  //   let thisOne = this.props.allBeaches.find(beach => {
+  //     return beach.name === this.props.currentBeach.name
+  //   })
+  //   // this.setState({
+  //   //
+  //   // })
+  //   // perhaps make another function, add Note, that looks through
+  //   // allNotes and places this newly made note to the tip top
+  //   // would need at least one arg, the id, to find from the time of
+  //   // submit to push it up
+  //   // let thisPhoto = this.state.photoInfo[0].secure_url
+  //   fetch("/api/notes", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       note: this.state.note,
+  //       user_id: this.props.currentUser.id,
+  //       beach_id: thisOne.id,
+  //       photo: this.ifPhoto(),
+  //     })
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       // console.log("back from post", data)
+  //       this.setState({
+  //         note: " ",
+  //         select: false,
+  //         allNotes: [data, ...this.state.allNotes]
+  //       }
+  //       , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
+  //      )
+  //       console.log("POSTED NOTE", this.state.allNotes)
+  //     });
+  // }
 
   componentDidMount() {
     this.fetchNotes()
@@ -191,45 +187,44 @@ class NoteStuff extends React.Component {
       })
   }
 
-  handleChange = (event) => {
-    this.setState({
-      oneNote: {...this.state.oneNote, [event.target.name]: event.target.value},
-      [event.target.name]: event.target.value,
-      oneTag: {...this.state.oneTag, [event.target.name]: event.target.value},
-    });
-  };
-
-  handleEdit = (thing) => {
-  // console.log("one note", thing, thing.id)
-    this.setState({
-      oneNote: thing,
-      select: true
-    });
-
-  }
-
-  handleDelete = (thing) => {
-  // console.log("delete this review", thing.id)
-   fetch(`/api/notes/${thing.id}`, {
-     method: "DELETE",
-   })
-     .then( r => r.json())
-     .then( data => {
-       console.log("removed", data)
-       var newItems = this.state.allNotes.filter((note) => {
-         return note.id !== thing.id});
-     this.setState({ allNotes: newItems });
-     })
-  }
+  // handleChange = (event) => {
+  //   this.setState({
+  //     oneNote: {...this.state.oneNote, [event.target.name]: event.target.value},
+  //     [event.target.name]: event.target.value,
+  //     oneTag: {...this.state.oneTag, [event.target.name]: event.target.value},
+  //   });
+  // };
+//lifting these functtions to App so I can prop them down to AllNotes
+  // handleEdit = (thing) => {
+  // // console.log("one note", thing, thing.id)
+  //   this.setState({
+  //     oneNote: thing,
+  //     select: true
+  //   });
+  //
+  // }
+  //
+  // handleDelete = (thing) => {
+  // // console.log("delete this review", thing.id)
+  //  fetch(`/api/notes/${thing.id}`, {
+  //    method: "DELETE",
+  //  })
+  //    .then( r => r.json())
+  //    .then( data => {
+  //      console.log("removed", data)
+  //      var newItems = this.state.allNotes.filter((note) => {
+  //        return note.id !== thing.id});
+  //    this.setState({ allNotes: newItems });
+  //    })
+  // }
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+      return <NoteCard note={note} key={note.id} handleEdit={this.props.handleEdit} handleDelete={this.props.handleDelete} handleChange={this.props.handleChange} />
     })
   }
 
   setShit = (result) => {
-    // console.log("bro what", result)
     this.setState({
       photoInfo: result,
       loading: null,
@@ -278,13 +273,13 @@ class NoteStuff extends React.Component {
                 }
             </div>
 
-        <form className="Note-Form" onSubmit={this.handleSubmit}>
+        <form className="Note-Form" onSubmit={this.props.handleSubmit}>
           <br />
           <textarea
           id="styled"
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           name="note"
-          value={this.state.oneNote ? this.state.oneNote.note : this.state.note}
+          value={this.props.oneNote ? this.props.oneNote.note : this.props.note}
           rows="4"
           cols="50"
           type="text"

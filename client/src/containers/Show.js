@@ -55,7 +55,12 @@ class Show extends React.Component {
               </div>
               <BeachDetails today={this.state.today}/>
               <Banner title={"Notes"}/>
-              <NoteStuff allBeaches={this.props.allBeaches} currentUser={this.props.currentUser} currentBeach={this.props.currentBeach}/>
+              <NoteStuff allBeaches={this.props.allBeaches} currentUser={this.props.currentUser} currentBeach={this.props.currentBeach}
+              handleEdit={this.props.handleEdit}
+              handleDelete={this.props.handleDelete}
+              handleChange={this.props.handleChange}
+              note={this.props.note}
+              oneNote={this.props.oneNote}/>
             </div>
           </>
           :
