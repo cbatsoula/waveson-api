@@ -428,6 +428,17 @@ button:active {
 
   flex-wrap: wrap;
 }
+@media screen and (max-width:760px){
+  .AllNote-Container {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+
+    font-size: 20px;
+    justify-content: stretch;
+
+  }
+}
 
 .Note-Container {
 
@@ -442,6 +453,20 @@ button:active {
 
   flex-wrap: wrap;
 
+}
+@media screen and (max-width:760px){
+  .Note-Container {
+    /* For mobile phones: */
+    display: flex;
+    background-color: #639898;
+    height: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
 }
 
 .Note-Form {
@@ -480,6 +505,16 @@ button:active {
   align-self: stretch;
   align-items: center;
 }
+@media screen and (max-width:760px){
+  .Note-Card {
+    /* For mobile phones: */
+
+
+    height: auto;
+    width: 90%;
+
+  }
+}
 
 .Note-Text {
   display: flex;
@@ -487,6 +522,21 @@ button:active {
   font-size: 25px;
   padding: 1%;
 
+}
+@media screen and (max-width:760px){
+  .Note-Text {
+    /* For mobile phones: */
+
+
+    height: auto;
+    width: 90%;
+    font-size: 20px;
+
+
+  }
+  img {
+    max-width: 375px;
+  }
 }
 
 .upload {
@@ -566,33 +616,3 @@ input[type=submit] {
     transform: rotate(600deg);
   }
 }
-
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #639898;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(3000deg);
-  }
-} */
