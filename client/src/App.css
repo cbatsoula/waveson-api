@@ -187,6 +187,7 @@ button:active {
     justify-content: space-between;
     flex-wrap: wrap;
     flex-direction: column;
+    margin: 8px;
 
   }
 
@@ -216,7 +217,7 @@ button:active {
 @media screen and (max-width:760px) {
     .Beach-Card {
       /* For mobile phones: */
-      width: 100%;
+      width: 95%;
 
     }
 
