@@ -186,13 +186,21 @@ button:active {
   display: flex;
   background-color: #dee3cc;
   width: 15vw;
+<<<<<<< HEAD
   /* height: 37vh; */
+=======
+>>>>>>> ok things are back to a time when it worked, and style is edited
   height: auto;
   color: #976224;
   font-size: 25px;
   justify-items: space-evenly;
+<<<<<<< HEAD
   margin: 10px;
   padding: 10px;
+=======
+  margin: 5px;
+  padding: 5px;
+>>>>>>> ok things are back to a time when it worked, and style is edited
   word-break: normal;
   align-content: stretch;
 
