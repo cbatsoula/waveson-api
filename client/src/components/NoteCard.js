@@ -17,10 +17,24 @@ class NoteCard extends React.Component {
       })
     }
   }
+
+  renderBeach = () => {
+    if (this.props.allBeaches.length > 0 ) {
+      let beachID = this.props.note.beach_id
+      console.log("beachID", beachID)
+
+      let foundBeach = this.props.allBeaches.map(beach =>
+        console.log("beach", beach);
+        beach.id === beachID;
+       )
+      console.log("foundBeach", foundBeach)
+
+    }
+  }
   // <li>Tags: {this.renderTags()}</li>
 
   render () {
-    // console.log(" note card props ", this.props)
+    console.log(" note card props ", this.props)
     // console.log("note card", window.location)
     return (
       <div className="Note-Card">
@@ -28,6 +42,7 @@ class NoteCard extends React.Component {
         <ul>
           <li>{this.props.note.note}</li>
           <li>{this.formatDate()}</li>
+          <li>{this.renderBeach()}</li>
         </ul>
         </div>
         {

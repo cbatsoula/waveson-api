@@ -153,6 +153,7 @@ button:active {
 
 .FavContainer {
   display: flex;
+  display: flex;
   height: auto;
   width: auto;
   background-color: #639575;
@@ -185,6 +186,7 @@ button:active {
   display: flex;
   background-color: #dee3cc;
   width: 15vw;
+  /* height: 37vh; */
   height: auto;
   color: #976224;
   font-size: 25px;

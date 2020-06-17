@@ -25,6 +25,11 @@ class App extends React.Component {
     allNotes: null,
     beachSaveData: null,
     theFavs: null,
+    //notes
+    note: null,
+    allNotes: null,
+    oneNote: null,
+    select: false,
   }
 
 
@@ -326,7 +331,122 @@ class App extends React.Component {
              this.fetchFavs()
            })
        }
+       handleEdit = (thing) => {
+       console.log("one note", thing, thing.id)
+         this.setState({
+           oneNote: thing,
+           select: true
+         });
 
+       }
+
+       handleDelete = (thing) => {
+       // console.log("delete this review", thing.id)
+        fetch(`/api/notes/${thing.id}`, {
+          method: "DELETE",
+        })
+          .then( r => r.json())
+          .then( data => {
+            console.log("removed", data)
+            var newItems = this.state.allNotes.filter((note) => {
+              return note.id !== thing.id});
+          this.setState({ allNotes: newItems });
+          })
+       }
+
+       handleChange = (event) => {
+         console.log("handleChange", this.state)
+         this.setState({
+           oneNote: {...this.state.oneNote, [event.target.name]: event.target.value},
+           [event.target.name]: event.target.value,
+
+         });
+       };
+
+       handleSubmit = event => {
+       event.preventDefault();
+
+
+       let thisOne = this.state.allBeaches.find(beach => {
+         return beach.name === this.state.currentBeach.name
+       })
+
+       if (this.state.select){
+         fetch(`/api/notes/${this.state.oneNote.id}`, {
+           method: "PATCH",
+           headers: {
+             "Content-Type": "application/json",
+             "Access-Control-Allow-Methods": "PATCH",
+             "Access-Control-Allow-Origin": "http://localhost"
+           },
+           body: JSON.stringify({
+             note: this.state.note,
+             user_id: this.state.currentUser.id,
+             beach_id: thisOne.id,
+            })
+         })
+           .then(r => r.json())
+           .then(data => {
+             console.log("data", data)
+             //update one object in state array
+             let updatedNotes = this.state.allNotes.map(note => {
+               if (note.id === this.state.oneNote.id){
+                 return this.state.oneNote
+               } else {
+                 return note
+               }
+             })
+             this.setState({
+               note: "",
+               allNotes: updatedNotes,
+               select: false,
+             })
+           })
+
+       } else {
+         console.log("handleSubmit - else")
+         // this.postNotes()
+
+           let thisOne = this.props.allBeaches.find(beach => {
+             return beach.name === this.props.currentBeach.name
+           })
+           // this.setState({
+           //
+           // })
+           // perhaps make another function, add Note, that looks through
+           // allNotes and places this newly made note to the tip top
+           // would need at least one arg, the id, to find from the time of
+           // submit to push it up
+           // let thisPhoto = this.state.photoInfo[0].secure_url
+           fetch("/api/notes", {
+             method: "POST",
+             headers: {
+               "Content-Type": "application/json",
+               "Accept": "application/json"
+             },
+             body: JSON.stringify({
+               note: this.state.note,
+               user_id: this.state.currentUser.id,
+               beach_id: thisOne.id,
+               photo: this.ifPhoto(),
+             })
+           })
+             .then(res => res.json())
+             .then(data => {
+               // console.log("back from post", data)
+               this.setState({
+                 note: " ",
+                 select: false,
+                 allNotes: [data, ...this.state.allNotes]
+               }
+               , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
+              )
+               console.log("POSTED NOTE", this.state.allNotes)
+             });
+
+
+         }
+       };
 
   render() {
     console.log("app", this.state)
@@ -351,12 +471,26 @@ class App extends React.Component {
             }
 
             <Route path='/map' component={Map} />
-            <Route path='/beach' render={(routerProps) => <Show {...routerProps} currentBeach={this.state.currentBeach} currentUser={this.state.currentUser} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} doTheThing={this.doTheThing} theFavs={this.doTheThing()} saveBeach={this.saveBeach} removeBeach={this.removeBeach}/>}
+            <Route path='/beach' render={(routerProps) => <Show {...routerProps} currentBeach={this.state.currentBeach} currentUser={this.state.currentUser} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} doTheThing={this.doTheThing} theFavs={this.doTheThing()} saveBeach={this.saveBeach} removeBeach={this.removeBeach}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            note={this.state.note}
+            oneNote={this.state.oneNote}
+            select={this.state.select}/>}
              />
 
             <Route path='/loader' render={() => <Loader />} />
 
-            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} allBeaches={this.state.allBeaches} />} />
+            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} allBeaches={this.state.allBeaches}
+            handleEdit={this.handleEdit}
+            handleDelete={this.handleDelete}
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            note={this.state.note}
+            oneNote={this.state.oneNote}
+            select={this.state.select} />} />
 
           </Switch>
           <Route exact path='/home' render={(routerProps) => <MainContainer {...routerProps} selectBeach={this.selectBeach} beachData={this.state.beachData.results} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} currentUser={this.state.currentUser} doTheThing={this.doTheThing} theFavs={this.doTheThing()} />} />
