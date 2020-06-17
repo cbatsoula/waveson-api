@@ -10,8 +10,7 @@ class AllNotes extends React.Component {
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard handleEdit={this.props.handleEdit}
-      handleDelete={this.props.handleDelete} handleChange={this.props.handleChange} allBeaches={this.props.allBeaches} note={note} key={note.id} />
+      return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
     })
   }
 
@@ -52,19 +51,6 @@ class AllNotes extends React.Component {
       <Banner title={"All Notes"} />
       </div>
 
-      <form className="Note-Form" onSubmit={this.handleSubmit}>
-        <br />
-        <textarea
-        id="styled"
-        onChange={this.props.handleChange}
-        name="note"
-        value={this.props.oneNote ? this.props.oneNote.note : this.props.note}
-        rows="4"
-        cols="50"
-        type="text"
-        placeholder="Start your entry here!"/>
-        <input className="button" type="submit" value="Submit" />
-      </form>
       <div className="AllNote-Container">
         {
           this.state.allNotes

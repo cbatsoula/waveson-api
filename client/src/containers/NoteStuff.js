@@ -104,44 +104,44 @@ class NoteStuff extends React.Component {
     }
   }
 
-  // postNotes = () => {
-  //   let thisOne = this.props.allBeaches.find(beach => {
-  //     return beach.name === this.props.currentBeach.name
-  //   })
-  //   // this.setState({
-  //   //
-  //   // })
-  //   // perhaps make another function, add Note, that looks through
-  //   // allNotes and places this newly made note to the tip top
-  //   // would need at least one arg, the id, to find from the time of
-  //   // submit to push it up
-  //   // let thisPhoto = this.state.photoInfo[0].secure_url
-  //   fetch("/api/notes", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Accept": "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       note: this.state.note,
-  //       user_id: this.props.currentUser.id,
-  //       beach_id: thisOne.id,
-  //       photo: this.ifPhoto(),
-  //     })
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       // console.log("back from post", data)
-  //       this.setState({
-  //         note: " ",
-  //         select: false,
-  //         allNotes: [data, ...this.state.allNotes]
-  //       }
-  //       , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
-  //      )
-  //       console.log("POSTED NOTE", this.state.allNotes)
-  //     });
-  // }
+  postNotes = () => {
+    let thisOne = this.props.allBeaches.find(beach => {
+      return beach.name === this.props.currentBeach.name
+    })
+    // this.setState({
+    //
+    // })
+    // perhaps make another function, add Note, that looks through
+    // allNotes and places this newly made note to the tip top
+    // would need at least one arg, the id, to find from the time of
+    // submit to push it up
+    let thisPhoto = this.state.photoInfo[0].secure_url
+    fetch("/api/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        note: this.state.note,
+        user_id: this.props.currentUser.id,
+        beach_id: thisOne.id,
+        photo: this.ifPhoto(),
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        // console.log("back from post", data)
+        this.setState({
+          note: " ",
+          select: false,
+          allNotes: [data, ...this.state.allNotes]
+        }
+        , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
+       )
+        console.log("POSTED NOTE", this.state.allNotes)
+      });
+  }
 
   componentDidMount() {
     this.fetchNotes()
@@ -187,40 +187,40 @@ class NoteStuff extends React.Component {
       })
   }
 
-  // handleChange = (event) => {
-  //   this.setState({
-  //     oneNote: {...this.state.oneNote, [event.target.name]: event.target.value},
-  //     [event.target.name]: event.target.value,
-  //     oneTag: {...this.state.oneTag, [event.target.name]: event.target.value},
-  //   });
-  // };
-//lifting these functtions to App so I can prop them down to AllNotes
-  // handleEdit = (thing) => {
-  // // console.log("one note", thing, thing.id)
-  //   this.setState({
-  //     oneNote: thing,
-  //     select: true
-  //   });
-  //
-  // }
-  //
-  // handleDelete = (thing) => {
-  // // console.log("delete this review", thing.id)
-  //  fetch(`/api/notes/${thing.id}`, {
-  //    method: "DELETE",
-  //  })
-  //    .then( r => r.json())
-  //    .then( data => {
-  //      console.log("removed", data)
-  //      var newItems = this.state.allNotes.filter((note) => {
-  //        return note.id !== thing.id});
-  //    this.setState({ allNotes: newItems });
-  //    })
-  // }
+  handleChange = (event) => {
+    this.setState({
+      oneNote: {...this.state.oneNote, [event.target.name]: event.target.value},
+      [event.target.name]: event.target.value,
+      oneTag: {...this.state.oneTag, [event.target.name]: event.target.value},
+    });
+  };
+
+  handleEdit = (thing) => {
+  // console.log("one note", thing, thing.id)
+    this.setState({
+      oneNote: thing,
+      select: true
+    });
+
+  }
+
+  handleDelete = (thing) => {
+  // console.log("delete this review", thing.id)
+   fetch(`/api/notes/${thing.id}`, {
+     method: "DELETE",
+   })
+     .then( r => r.json())
+     .then( data => {
+       console.log("removed", data)
+       var newItems = this.state.allNotes.filter((note) => {
+         return note.id !== thing.id});
+     this.setState({ allNotes: newItems });
+     })
+  }
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard note={note} key={note.id} handleEdit={this.props.handleEdit} handleDelete={this.props.handleDelete} handleChange={this.props.handleChange} />
+      return <NoteCard note={note} key={note.id} handleEdit={this.state.handleEdit} handleDelete={this.state.handleDelete} handleChange={this.state.handleChange} />
     })
   }
 
@@ -273,13 +273,13 @@ class NoteStuff extends React.Component {
                 }
             </div>
 
-        <form className="Note-Form" onSubmit={this.props.handleSubmit}>
+        <form className="Note-Form" onSubmit={this.state.handleSubmit}>
           <br />
           <textarea
           id="styled"
-          onChange={this.props.handleChange}
+          onChange={this.state.handleChange}
           name="note"
-          value={this.props.oneNote ? this.props.oneNote.note : this.props.note}
+          value={this.state.oneNote ? this.state.oneNote.note : this.state.note}
           rows="4"
           cols="50"
           type="text"

@@ -17,11 +17,10 @@ class NoteCard extends React.Component {
       })
     }
   }
-
   // <li>Tags: {this.renderTags()}</li>
 
   render () {
-    console.log(" note card props ", this.props)
+    // console.log(" note card props ", this.props)
     // console.log("note card", window.location)
     return (
       <div className="Note-Card">
@@ -29,7 +28,6 @@ class NoteCard extends React.Component {
         <ul>
           <li>{this.props.note.note}</li>
           <li>{this.formatDate()}</li>
-
         </ul>
         </div>
         {
@@ -39,9 +37,18 @@ class NoteCard extends React.Component {
           :
           null
         }
-          <button classname="button" onClick={() => {this.props.handleDelete(this.props.note)}}>DELETE</button>
-          <button classname="button" onClick={() => {this.props.handleEdit(this.props.note)}}>EDIT</button>
 
+        {
+          window.location.pathname === "/notes"
+          ?
+          null
+          :
+          <>
+            <button classname="button" onClick={() => {this.props.handleDelete(this.props.note)}}>DELETE</button>
+            <button classname="button" onClick={() => {this.props.handleEdit(this.props.note)}}>EDIT</button>
+          </>
+
+        }
 
 
 
