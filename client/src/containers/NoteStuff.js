@@ -21,52 +21,50 @@ class NoteStuff extends React.Component {
     idkmydude: null,
   }
 
-//lifted to app
-  // handleSubmit = event => {
-  // event.preventDefault();
-  //
-  //
-  // let thisOne = this.props.allBeaches.find(beach => {
-  //   return beach.name === this.props.currentBeach.name
-  // })
-  //
-  // if (this.props.select){
-  //   fetch(`/api/notes/${this.props.oneNote.id}`, {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "Access-Control-Allow-Methods": "PATCH",
-  //       "Access-Control-Allow-Origin": "http://localhost"
-  //     },
-  //     body: JSON.stringify({
-  //       note: this.props.note,
-  //       user_id: this.props.currentUser.id,
-  //       beach_id: thisOne.id,
-  //      })
-  //   })
-  //     .then(r => r.json())
-  //     .then(data => {
-  //       // console.log("data", data)
-  //       //update one object in state array
-  //       let updatedNotes = this.state.allNotes.map(note => {
-  //         if (note.id === this.props.oneNote.id){
-  //           return this.props.oneNote
-  //         } else {
-  //           return note
-  //         }
-  //       })
-  //       this.setState({
-  //         note: "",
-  //         allNotes: updatedNotes,
-  //         select: false,
-  //       })
-  //     })
-  //
-  // } else {
-  //   this.postNotes()
-  //   // this.postTags()
-  //   }
-  // };
+  handleSubmit = event => {
+  event.preventDefault();
+
+  let thisOne = this.props.allBeaches.find(beach => {
+    return beach.name === this.props.currentBeach.name
+  })
+
+  if (this.props.select){
+    fetch(`/api/notes/${this.props.oneNote.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Methods": "PATCH",
+        "Access-Control-Allow-Origin": "http://localhost"
+      },
+      body: JSON.stringify({
+        note: this.props.note,
+        user_id: this.props.currentUser.id,
+        beach_id: thisOne.id,
+       })
+    })
+      .then(r => r.json())
+      .then(data => {
+        // console.log("data", data)
+        //update one object in state array
+        let updatedNotes = this.state.allNotes.map(note => {
+          if (note.id === this.props.oneNote.id){
+            return this.props.oneNote
+          } else {
+            return note
+          }
+        })
+        this.setState({
+          note: "",
+          allNotes: updatedNotes,
+          select: false,
+        })
+      })
+
+  } else {
+    this.postNotes()
+    // this.postTags()
+    }
+  };
 
 
 //not inn use
@@ -169,23 +167,23 @@ class NoteStuff extends React.Component {
 
       })
   }
-  fetchTags = () => {
-    let thisOne = this.props.allBeaches.find(beach => {
-      return beach.name === this.props.currentBeach.name
-    })
-    let userID = this.props.currentUser.id
-    fetch('/api/tags')
-      .then( r => r.json())
-      .then( stuff => {
-        let findFromTags = stuff.filter( tag => {
-          return tag.beach_id === thisOne.id && tag.user_id === userID})
-
-        this.setState({
-          allTags: findFromTags
-        })
-
-      })
-  }
+  // fetchTags = () => {
+  //   let thisOne = this.props.allBeaches.find(beach => {
+  //     return beach.name === this.props.currentBeach.name
+  //   })
+  //   let userID = this.props.currentUser.id
+  //   fetch('/api/tags')
+  //     .then( r => r.json())
+  //     .then( stuff => {
+  //       let findFromTags = stuff.filter( tag => {
+  //         return tag.beach_id === thisOne.id && tag.user_id === userID})
+  //
+  //       this.setState({
+  //         allTags: findFromTags
+  //       })
+  //
+  //     })
+  // }
 
   handleChange = (event) => {
     this.setState({
@@ -220,7 +218,7 @@ class NoteStuff extends React.Component {
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard note={note} key={note.id} handleEdit={this.state.handleEdit} handleDelete={this.state.handleDelete} handleChange={this.state.handleChange} />
+      return <NoteCard note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleChange={this.handleChange} />
     })
   }
 
