@@ -154,7 +154,7 @@ button:active {
 .FavContainer {
   display: flex;
   height: auto;
-  width: 95%;
+  width: auto;
   background-color: #639575;
   justify-content: space-around;
   flex-direction: row;
@@ -185,17 +185,17 @@ button:active {
   display: flex;
   background-color: #dee3cc;
   width: 15vw;
-  height: 37vh;
+  height: auto;
   color: #976224;
   font-size: 25px;
   justify-items: space-evenly;
   margin: 5px;
-  padding: 2%;
+  padding: 5px;
   word-break: normal;
   align-content: stretch;
 
   border-radius: 10px;
-  border: 2px outset #6E7B66;
+  border: 5px outset #6E7B66;
   /* border-width: 5px ; */
   flex-grow: 1;
   flex-basis: 20%;
