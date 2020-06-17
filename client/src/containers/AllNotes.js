@@ -11,7 +11,7 @@ class AllNotes extends React.Component {
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
       return <NoteCard handleEdit={this.props.handleEdit}
-      handleDelete={this.props.handleDelete} handleChange={this.props.handleChange} note={note} key={note.id} />
+      handleDelete={this.props.handleDelete} handleChange={this.props.handleChange} allBeaches={this.props.allBeaches} note={note} key={note.id} />
     })
   }
 
