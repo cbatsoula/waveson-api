@@ -52,7 +52,7 @@ class AllNotes extends React.Component {
       <Banner title={"All Notes"} />
       </div>
 
-      <AllNotesFilter />
+      <AllNotesFilter allBeaches={this.props.allBeaches} allNotes={this.state.allNotes}/>
 
 
       <div className="AllNote-Container">
