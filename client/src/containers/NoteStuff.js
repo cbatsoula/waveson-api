@@ -29,6 +29,7 @@ class NoteStuff extends React.Component {
   })
 
   if (this.props.select){
+    console.log("this.props.oneNote.id", this.props.oneNote.id)
     fetch(`/api/notes/${this.props.oneNote.id}`, {
       method: "PATCH",
       headers: {
@@ -114,6 +115,7 @@ class NoteStuff extends React.Component {
     // would need at least one arg, the id, to find from the time of
     // submit to push it up
     let thisPhoto = this.state.photoInfo[0].secure_url
+    console.log("body:", this.state.note, this.props.currentUser.id, thisOne.id)
     fetch("/api/notes", {
       method: "POST",
       headers: {
@@ -129,7 +131,7 @@ class NoteStuff extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        // console.log("back from post", data)
+        console.log("back from post", data)
         this.setState({
           note: " ",
           select: false,
@@ -253,8 +255,8 @@ class NoteStuff extends React.Component {
       // placeholder="tags"/>
       // <Image cloudName="dlybpe5za" publicId="sample" width="300" crop="scale" />
   render () {
-    // console.log("note", this.state)
-    // console.log("note props", this.props)
+    console.log("note", this.state)
+    console.log("note props", this.props)
     return (
       <div className="Note-Container">
             <div className="upload">
@@ -271,11 +273,11 @@ class NoteStuff extends React.Component {
                 }
             </div>
 
-        <form className="Note-Form" onSubmit={this.state.handleSubmit}>
+        <form className="Note-Form" onSubmit={this.handleSubmit}>
           <br />
           <textarea
           id="styled"
-          onChange={this.state.handleChange}
+          onChange={this.handleChange}
           name="note"
           value={this.state.oneNote ? this.state.oneNote.note : this.state.note}
           rows="4"
