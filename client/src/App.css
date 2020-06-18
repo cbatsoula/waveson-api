@@ -200,7 +200,7 @@ button:active {
   /* border-width: 5px ; */
   flex-grow: 1;
   flex-basis: 20%;
-
+  padding-right: 15px;
 }
 
 @media screen and (max-width:760px) {
