@@ -8,6 +8,26 @@ class NoteCard extends React.Component {
 
   }
 
+  findBeachName= () => {
+    // let thisOne = this.props.allBeaches.find(beach => {
+    //   return beach.name === this.props.currentBeach.name
+    let thisBeach = this.props.note.beach_id
+    console.log("thisBeach", thisBeach)
+    console.log("AllBeaches", this.props.allBeaches)
+
+    let findBeach = this.props.allBeaches.find(beach => {
+      if (beach.id = thisBeach) {
+        console.log("HELL YEA", beach)
+        return beach
+      } else {
+        console.log(beach)
+      }
+
+    })
+    console.log("findBeach", findBeach)
+
+  }
+
 
   renderTags = () => {
     // console.log(this.props)
@@ -20,7 +40,7 @@ class NoteCard extends React.Component {
   // <li>Tags: {this.renderTags()}</li>
 
   render () {
-    // console.log(" note card props ", this.props)
+    console.log(" note card props ", this.props)
     // console.log("note card", window.location)
     return (
       <div className="Note-Card">
@@ -28,6 +48,7 @@ class NoteCard extends React.Component {
         <ul>
           <li>{this.props.note.note}</li>
           <li>{this.formatDate()}</li>
+          <li>{this.props.note.beach_name}</li>
         </ul>
         </div>
         {

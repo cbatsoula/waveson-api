@@ -114,8 +114,11 @@ class NoteStuff extends React.Component {
     // allNotes and places this newly made note to the tip top
     // would need at least one arg, the id, to find from the time of
     // submit to push it up
-    let thisPhoto = this.state.photoInfo[0].secure_url
-    console.log("body:", this.state.note, this.props.currentUser.id, thisOne.id)
+
+
+    // let thisPhoto = this.state.photoInfo[0].secure_url
+
+    console.log("body:", this.state.note, this.props.currentUser.id, thisOne.id, this.props.currentBeach)
     fetch("/api/notes", {
       method: "POST",
       headers: {
@@ -127,6 +130,7 @@ class NoteStuff extends React.Component {
         user_id: this.props.currentUser.id,
         beach_id: thisOne.id,
         photo: this.ifPhoto(),
+        beach_name: this.props.currentBeach.name
       })
     })
       .then(res => res.json())
@@ -220,7 +224,7 @@ class NoteStuff extends React.Component {
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleChange={this.handleChange} />
+      return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleChange={this.handleChange} />
     })
   }
 

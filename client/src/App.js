@@ -110,7 +110,7 @@ class App extends React.Component {
       .then( allBeaches => {
         this.setState({
           allBeaches: allBeaches
-        })
+        }, () => {console.log("immed setState allBeaches", this.state.allBeaches)})
       })
 
 
