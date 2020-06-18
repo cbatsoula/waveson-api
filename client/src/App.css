@@ -617,3 +617,12 @@ input[type=submit] {
     transform: rotate(600deg);
   }
 }
+
+
+.AllNotesFilter-Container {
+  display: flex;
+  height: 10%;
+  width: auto;
+  background-color: #3f4a38;
+  padding: 20px;
+}

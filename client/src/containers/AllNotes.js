@@ -1,6 +1,7 @@
 import React from 'react';
 import NoteCard from '../components/NoteCard';
 import Banner from '../components/Banner';
+import AllNotesFilter from './AllNotesFilter';
 
 class AllNotes extends React.Component {
 
@@ -50,6 +51,9 @@ class AllNotes extends React.Component {
       <div className="Banner">
       <Banner title={"All Notes"} />
       </div>
+
+      <AllNotesFilter />
+
 
       <div className="AllNote-Container">
         {
