@@ -4,6 +4,7 @@ function Hourly(props) {
   console.log("hourly", props)
   return (
     <div className="Beach-Details">
+    <p>Marine Weather </p>
       <ul>
         <li>Feels like: {props.weather.FeelsLikeF} F </li>
         <li>{props.weather.weatherDesc[0].value}</li>

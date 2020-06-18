@@ -21,17 +21,16 @@ class NoteStuff extends React.Component {
     idkmydude: null,
   }
 
-
   handleSubmit = event => {
   event.preventDefault();
-
 
   let thisOne = this.props.allBeaches.find(beach => {
     return beach.name === this.props.currentBeach.name
   })
 
-  if (this.state.select){
-    fetch(`/api/notes/${this.state.oneNote.id}`, {
+  if (this.props.select){
+    console.log("this.props.oneNote.id", this.props.oneNote.id)
+    fetch(`/api/notes/${this.props.oneNote.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +38,7 @@ class NoteStuff extends React.Component {
         "Access-Control-Allow-Origin": "http://localhost"
       },
       body: JSON.stringify({
-        note: this.state.note,
+        note: this.props.note,
         user_id: this.props.currentUser.id,
         beach_id: thisOne.id,
        })
@@ -49,8 +48,8 @@ class NoteStuff extends React.Component {
         // console.log("data", data)
         //update one object in state array
         let updatedNotes = this.state.allNotes.map(note => {
-          if (note.id === this.state.oneNote.id){
-            return this.state.oneNote
+          if (note.id === this.props.oneNote.id){
+            return this.props.oneNote
           } else {
             return note
           }
@@ -68,31 +67,33 @@ class NoteStuff extends React.Component {
     }
   };
 
-  postTags = () => {
-    let thisOne = this.props.allBeaches.find(beach => {
-      return beach.name === this.props.currentBeach.name
-    })
-    fetch(`/api/tags`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify({
-        tag: this.state.tag,
-        user_id: this.props.currentUser.id,
-        beach_id: thisOne.id,
-      })
-    })
-      .then( res => res.json())
-      .then( data => {
-        console.log("back from post tag", data)
-        this.setState({
-          tag: "",
-          allTags: [...this.state.allTags, data]
-        }, () => {console.log("POSTED TAG", this.state.allTags)})
-      })
-  }
+
+//not inn use
+  // postTags = () => {
+  //   let thisOne = this.props.allBeaches.find(beach => {
+  //     return beach.name === this.props.currentBeach.name
+  //   })
+  //   fetch(`/api/tags`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "Accept": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       tag: this.state.tag,
+  //       user_id: this.props.currentUser.id,
+  //       beach_id: thisOne.id,
+  //     })
+  //   })
+  //     .then( res => res.json())
+  //     .then( data => {
+  //       console.log("back from post tag", data)
+  //       this.setState({
+  //         tag: "",
+  //         allTags: [...this.state.allTags, data]
+  //       }, () => {console.log("POSTED TAG", this.state.allTags)})
+  //     })
+  // }
 
   ifPhoto = () => {
     if (this.state.photoInfo){
@@ -113,7 +114,11 @@ class NoteStuff extends React.Component {
     // allNotes and places this newly made note to the tip top
     // would need at least one arg, the id, to find from the time of
     // submit to push it up
+
+
     // let thisPhoto = this.state.photoInfo[0].secure_url
+
+    console.log("body:", this.state.note, this.props.currentUser.id, thisOne.id, this.props.currentBeach)
     fetch("/api/notes", {
       method: "POST",
       headers: {
@@ -125,12 +130,12 @@ class NoteStuff extends React.Component {
         user_id: this.props.currentUser.id,
         beach_id: thisOne.id,
         photo: this.ifPhoto(),
+        beach_name: this.props.currentBeach.name
       })
     })
       .then(res => res.json())
       .then(data => {
-        // this.fetchNotes()
-        // console.log("back from post", data)
+        console.log("back from post", data)
         this.setState({
           note: " ",
           select: false,
@@ -139,11 +144,6 @@ class NoteStuff extends React.Component {
         , () => {console.log("POSTED NOTE immed", this.state.allNotes)}
        )
         console.log("POSTED NOTE", this.state.allNotes)
-
-        // this.setState({
-        //   reviews: [...this.state.reviews, data],
-        //   select: false,
-        // })
       });
   }
 
@@ -173,23 +173,23 @@ class NoteStuff extends React.Component {
 
       })
   }
-  fetchTags = () => {
-    let thisOne = this.props.allBeaches.find(beach => {
-      return beach.name === this.props.currentBeach.name
-    })
-    let userID = this.props.currentUser.id
-    fetch('/api/tags')
-      .then( r => r.json())
-      .then( stuff => {
-        let findFromTags = stuff.filter( tag => {
-          return tag.beach_id === thisOne.id && tag.user_id === userID})
-
-        this.setState({
-          allTags: findFromTags
-        })
-
-      })
-  }
+  // fetchTags = () => {
+  //   let thisOne = this.props.allBeaches.find(beach => {
+  //     return beach.name === this.props.currentBeach.name
+  //   })
+  //   let userID = this.props.currentUser.id
+  //   fetch('/api/tags')
+  //     .then( r => r.json())
+  //     .then( stuff => {
+  //       let findFromTags = stuff.filter( tag => {
+  //         return tag.beach_id === thisOne.id && tag.user_id === userID})
+  //
+  //       this.setState({
+  //         allTags: findFromTags
+  //       })
+  //
+  //     })
+  // }
 
   handleChange = (event) => {
     this.setState({
@@ -224,12 +224,11 @@ class NoteStuff extends React.Component {
 
   renderNoteCards = () => {
     return this.state.allNotes.map( note => {
-      return <NoteCard note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+      return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} handleEdit={this.handleEdit} handleDelete={this.handleDelete} handleChange={this.handleChange} />
     })
   }
 
   setShit = (result) => {
-    // console.log("bro what", result)
     this.setState({
       photoInfo: result,
       loading: null,
@@ -260,8 +259,8 @@ class NoteStuff extends React.Component {
       // placeholder="tags"/>
       // <Image cloudName="dlybpe5za" publicId="sample" width="300" crop="scale" />
   render () {
-    // console.log("note", this.state)
-    // console.log("note props", this.props)
+    console.log("note", this.state)
+    console.log("note props", this.props)
     return (
       <div className="Note-Container">
             <div className="upload">

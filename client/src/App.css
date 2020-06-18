@@ -35,34 +35,15 @@ button {
   -webkit-appearance: none;
   -moz-appearance: none;
   box-shadow: 0 7px 0 #476e6e;
-  /* box-shadow: 0 4px 5px 0 rgba(0, 0, 0.5, 0.5);
-  transition: 0.5s; */
-
-  /* display: flex; */
-  /* padding: 5%; */
-  /* justify-content: space-between; */
-  /* width: 83%; */
-  /* padding: 16px 32px; */
-  /* padding: 1rem 2rem; */
-
-    /* display: inline-block;
-    border-radius: 10px;
-    border-style: groove;
-    border-width: 5px;
-    padding: 1rem 2rem;
-    margin: 0;
-    text-decoration: none;
-    background: #727a49;
-    color: #ffffff;
-
-    /* font-size: 1.15rem;
-    line-height: 1;
-    cursor: pointer;
-    text-align: center;
-    transition: background 250ms ease-in-out, transform 150ms ease;
-    -webkit-appearance: none;
-    -moz-appearance: none; */
 }
+@media screen and (max-width:760px){
+  button {
+    /* For mobile phones: */
+    font-size: 15px;
+    width: 18vw;
+  }
+}
+
 
 button:hover,
 button:focus {
@@ -100,6 +81,12 @@ button:active {
   color: #dee3cc;
   text-decoration: none;
 }
+@media screen and (max-width:760px){
+  .logo {
+    /* For mobile phones: */
+    font-size: 25px;
+  }
+}
 
 .logo:hover {
   color: #3f4a38;
@@ -116,90 +103,160 @@ button:active {
   color: #3f4a38;
 }
 
-.Main-Container {
 
+.Main-Container {
+  height: auto;
+  background-color: #639898;
 }
 
 .Banner {
   display: flex;
   background-color: #404f37;
-  width: 100vw;
+  width: 100%;
   height: 8vh;
   align-items: center;
   justify-content: center;
   font-size: 30px;
   /* border-style: hidden hidden solid; */
   color: #dbd5b4;
-  /* margin: auto; */
+
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0.5, 0.5);
-  transition: 0.5s;
 }
 
 .Beach-Container {
   background-color: #639898;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 95%;
   justify-content: space-around;
   flex-direction: row;
   padding: 10px;
   font-size: 25px;
   flex-wrap: wrap;
-  margin: auto;
+  margin: 8px;
   align-content: stretch;
+}
+@media screen and (max-width:760px){
+  .Beach-Container {
+    /* For mobile phones: */
+    background-color: #639898;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+  }
+
 }
 
 .FavContainer {
   display: flex;
-  height: 100%;
-  width: 100%;
+  display: flex;
+  height: auto;
+  width: auto;
   background-color: #639575;
   justify-content: space-around;
   flex-direction: row;
-  padding: 10px;
+  /* padding: 1px; */
+
   font-size: 25px;
   flex-wrap: wrap;
-  margin: auto;
   align-content: stretch;
+}
+
+@media screen and (max-width:760px){
+  .FavContainer {
+    /* For mobile phones: */
+    background-color: #639575;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 18px;
+
+  }
+
 }
 
 .Beach-Card {
   display: flex;
   background-color: #dee3cc;
   width: 15vw;
-  height: 37vh;
+  height: auto;
   color: #976224;
   font-size: 25px;
   justify-items: space-evenly;
   margin: 5px;
-  padding: 2%;
+  padding: 5px;
   word-break: normal;
   align-content: stretch;
 
   border-radius: 10px;
-  border: 2px outset #6E7B66;
+  border: 5px outset #6E7B66;
   /* border-width: 5px ; */
   flex-grow: 1;
   flex-basis: 20%;
+  padding-right: 15px;
+}
+
+@media screen and (max-width:760px) {
+    .Beach-Card {
+      /* For mobile phones: */
+      width: 95%;
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0.5, 0.5);
+    }
 
 }
 
 .Show {
-
+  display: flex;
+  width: 100%;
   background-color: #639898;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+@media screen and (max-width:760px){
+  .Show {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+    background-color: #639898;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: stretch;
 
+  }
 }
 
 .Show-Details {
   display: flex;
   background-color: #639898;
   width: 100%;
-  height: 100%;
+
   font-size: 33px;
   justify-content: center;
   /* margin: auto; */
   padding: 1%;
 
+}
+@media screen and (max-width:760px){
+  .Show-Details {
+    /* For mobile phones: */
+    display: flex;
+    background-color: #639898;
+    width: 100%;
+    margin: 5px;
+
+    font-size: 28px;
+    justify-content: space-evenly;
+    align-items: center;
+    /* margin: auto; */
+    padding: 2%;
+  }
 }
 
 .Save-bttn {
@@ -210,31 +267,51 @@ button:active {
 
 .Beach-Details {
   display: flex;
-  /* background-color: #639898; */
-  height: 70%;
-  width: 80%;
+
+  height: 100%;
+  width: auto;
   background-color: #dee3cc;
   /* border-color: #6b5882; */
   border-color: #c9a865 #a8ab61 #3f406e #a8ab61;
   color: #976224;
   font-size: 25px;
-  justify-content: space-evenly;
-  margin: auto;
+  justify-content: center;
+
   padding: 2%;
 
   border-radius: 10px;
   border-style: groove;
   border-width: 5px;
-  margin: 70px;
+  margin: 10px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+@media screen and (max-width:760px){
+  .Beach-Details {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+
+    font-size: 20px;
+    justify-content: stretch;
+    margin: 2%;
+    padding: 2%;
+  }
 }
 
 .Hourly {
   display: flex;
   justify-content: space-evenly;
-  margin: auto;
+  /* margin: auto; */
   padding: 2%;
   height: 80%;
-  width: 80%;
+  width: auto;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 10px;
+
 }
 
 .Hourly-Time {
@@ -242,9 +319,9 @@ button:active {
   background-color: #476e6e;
   border-color: #6b5882;
   justify-content: space-evenly;
-  margin: 5px;
-  padding: 2%;
-  height: 20%;
+
+  padding: 3%;
+  height: 8%;
   width: 100%;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.5);
   transition: 0.3s;
@@ -285,10 +362,9 @@ button:active {
   color: #639898;
 }
 
+
 .Login-Container {
   box-shadow: 0 4px 5px 0 rgba(0, 0.8, 0.8, 0.8);
-  transition: 0.3s;
-
   display: flex;
   height: 15vh;
   align-items: center;
@@ -310,6 +386,22 @@ button:active {
   margin: auto;
   color: #639898;
 }
+/* Place breakpoint params AFTER the main css block - then it renders!*/
+@media screen and (max-width:760px){
+  .Login-Container {
+    /* For mobile phones: */
+    background: #6b5882;
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    border-color: #E8E0CC;
+
+  }
+
+}
 
 .Login-Sub {
   display: flex;
@@ -325,17 +417,57 @@ button:active {
 
 }
 
+.AllNote-Container {
+  display: flex;
+  background-color: #639898;
+
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* padding: 10px; */
+
+  flex-wrap: wrap;
+}
+@media screen and (max-width:760px){
+  .AllNote-Container {
+    /* For mobile phones: */
+    display: flex;
+    width: 100%;
+
+    font-size: 20px;
+    justify-content: stretch;
+
+  }
+}
+
 .Note-Container {
 
   display: flex;
   background-color: #639898;
-
+  height: 100%;
+  width: 100%;
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  padding: 10px;
+  /* padding: 10px; */
+
   flex-wrap: wrap;
 
+}
+@media screen and (max-width:760px){
+  .Note-Container {
+    /* For mobile phones: */
+    display: flex;
+    background-color: #639898;
+    height: auto;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px;
+    flex-wrap: wrap;
+  }
 }
 
 .Note-Form {
@@ -345,6 +477,7 @@ button:active {
   align-items: center;
   padding: 2%;
   width: 100%;
+  /* height: 40%; */
 }
 
 .Note-Card {
@@ -358,7 +491,8 @@ button:active {
   color: #dee3cc;
 
   margin: 30px;
-  height: 60%;
+  /* height: 700px; */
+  height: auto;
   width: 90%;
   /* flex-wrap: wrap; */
   flex-direction: column;
@@ -372,6 +506,16 @@ button:active {
   align-self: stretch;
   align-items: center;
 }
+@media screen and (max-width:760px){
+  .Note-Card {
+    /* For mobile phones: */
+
+
+    height: auto;
+    width: 90%;
+
+  }
+}
 
 .Note-Text {
   display: flex;
@@ -380,11 +524,26 @@ button:active {
   padding: 1%;
 
 }
+@media screen and (max-width:760px){
+  .Note-Text {
+    /* For mobile phones: */
+
+
+    height: auto;
+    width: 90%;
+    font-size: 20px;
+
+
+  }
+  img {
+    max-width: 375px;
+  }
+}
 
 .upload {
   display: flex;
   /* align-items: center; */
-  height: 50%;
+  height: 10%;
   width: 100%;
   justify-content: center;
   margin: 5px;
@@ -458,33 +617,3 @@ input[type=submit] {
     transform: rotate(600deg);
   }
 }
-
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #639898;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(3000deg);
-  }
-} */

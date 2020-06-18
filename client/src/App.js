@@ -25,6 +25,7 @@ class App extends React.Component {
     allNotes: null,
     beachSaveData: null,
     theFavs: null,
+
   }
 
 
@@ -32,22 +33,27 @@ class App extends React.Component {
     // let thisOne = this.state.allBeaches.find(beach => {
     //   return beach.name === this.state.currentBeach.name
     // })
-    fetch('/api/notes')
+    if (this.state.currentUser) {
+      fetch('/api/notes')
       .then( r => r.json())
       .then( stuff => {
-          let findFromNotes = stuff.filter( note => {
-            return note.user_id === this.state.currentUser.id
+        let findFromNotes = stuff.filter( note => {
+          return note.user_id === this.state.currentUser.id
 
-            //from this container of notes I want to only display the notes with the note.user_id to be equal === to whoever is currentUser.id
-          })
-          // console.log("pls", findFromNotes)
-          // console.log("userID", userID)
+          //from this container of notes I want to only display the notes with the note.user_id to be equal === to whoever is currentUser.id
+        })
+        // console.log("pls", findFromNotes)
+        // console.log("userID", userID)
         console.log("APP FETCH NOTES----------", findFromNotes)
         this.setState({
           allNotes: findFromNotes
         })
 
       })
+
+    } else {
+      console.log("fetchNotes - app state", this.state)
+    }
     // let userID = this.state.currentUser.id
     // fetch('http://localhost:3000/notes')
     //   .then( r => r.json())
@@ -104,11 +110,12 @@ class App extends React.Component {
       .then( allBeaches => {
         this.setState({
           allBeaches: allBeaches
-        })
+        }, () => {console.log("immed setState allBeaches", this.state.allBeaches)})
       })
 
 
       this.fetchFavs()
+      this.fetchNotes()
   }
 
   beachesFromUserLoc() {
@@ -152,7 +159,7 @@ class App extends React.Component {
 
   signUpUser = (input) => {
     if (input.password === input.passwordConfirmation) {
-      fetch('/api/signup', {
+      fetch('/signup', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
@@ -322,6 +329,7 @@ class App extends React.Component {
        }
 
 
+
   render() {
     console.log("app", this.state)
     // console.log("beach info", this.state.beachData.results)
@@ -332,7 +340,7 @@ class App extends React.Component {
 
           <Switch>
 
-            <Route path='/api/signup' render={() => <SignUp setUser={this.setUser} signUpUser={this.signUpUser}/>} />
+            <Route path='/signup' render={() => <SignUp setUser={this.setUser} signUpUser={this.signUpUser}/>} />
             {
               this.state.beachData
               ?
@@ -345,12 +353,12 @@ class App extends React.Component {
             }
 
             <Route path='/map' component={Map} />
-            <Route path='/beach' render={(routerProps) => <Show {...routerProps} currentBeach={this.state.currentBeach} currentUser={this.state.currentUser} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} doTheThing={this.doTheThing} theFavs={this.doTheThing()} saveBeach={this.saveBeach} removeBeach={this.removeBeach}/>}
+            <Route path='/beach' render={(routerProps) => <Show {...routerProps} currentBeach={this.state.currentBeach} currentUser={this.state.currentUser} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} doTheThing={this.doTheThing} theFavs={this.doTheThing()} saveBeach={this.saveBeach} removeBeach={this.removeBeach} />}
              />
 
             <Route path='/loader' render={() => <Loader />} />
 
-            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} />} />
+            <Route path="/notes" render={(routerProps) => <AllNotes {...routerProps} fetchNotes={this.fetchNotes} currentUser={this.state.currentUser} allNotes={this.state.allNotes} allBeaches={this.state.allBeaches} />} />
 
           </Switch>
           <Route exact path='/home' render={(routerProps) => <MainContainer {...routerProps} selectBeach={this.selectBeach} beachData={this.state.beachData.results} allBeaches={this.state.allBeaches} beachSaveData={this.state.beachSaveData} currentUser={this.state.currentUser} doTheThing={this.doTheThing} theFavs={this.doTheThing()} />} />

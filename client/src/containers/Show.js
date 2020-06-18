@@ -6,8 +6,6 @@ import NoteStuff from './NoteStuff';
 // import why from './why.html';
 
 
-
-
 class Show extends React.Component {
   state = {
     stats: [],
@@ -57,7 +55,7 @@ class Show extends React.Component {
               </div>
               <BeachDetails today={this.state.today}/>
               <Banner title={"Notes"}/>
-              <NoteStuff allBeaches={this.props.allBeaches} currentUser={this.props.currentUser} currentBeach={this.props.currentBeach}/>
+              <NoteStuff allBeaches={this.props.allBeaches} currentUser={this.props.currentUser} currentBeach={this.props.currentBeach} />
             </div>
           </>
           :
