@@ -7,14 +7,20 @@ class AllNotes extends React.Component {
 
   state = {
     allNotes: null,
+    sortedNotes: null,
     //filter
     selectBeach: null,
+    toggle: false,
+
   }
 
   renderNoteCards = () => {
-    return this.state.allNotes.map( note => {
-      return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
-    })
+    if (this.state.allNotes) {
+      return this.state.allNotes.map( note => {
+        return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+      })
+
+    }
   }
 
   componentDidMount = () => {
@@ -49,7 +55,9 @@ class AllNotes extends React.Component {
   handleChange = (event) => {
     console.log("event", event.target)
     this.setState({
-      selectBeach: event.target.value
+      selectBeach: event.target.value,
+      sortedNotes: null,
+      toggle: false,
     }, () => {console.log("handleChange", this.state)});
 
   }
@@ -57,14 +65,41 @@ class AllNotes extends React.Component {
   handleSubmit = (event) => {
     // alert('Beach selected: ' + this.state.value);
     event.preventDefault();
-    console.log("submit!!", this.state);
+    console.log("submit!!", this.state, this.props);
     // this.setState({
     //   selectBeach: event.target.value
     // });
+    let holdMe = []
+    let theseNotes = this.state.allNotes.map(note => {
+      if (note.beach_name === this.state.selectBeach){
+        console.log("yah", note)
+        holdMe.push(note)
+        console.log("holdMe", holdMe)
+        return note
+      } else {
+        console.log("nah", note)
+      }
+    })
+    console.log("theseNotes", theseNotes, this.state, holdMe)
+
+    this.setState({
+      sortedNotes: holdMe,
+      toggle: true,
+    })
+  }
+
+  renderSortedNoteCards = () => {
+    if (this.state.sortedNotes.length > 0) {
+      return this.state.sortedNotes.map( note => {
+        return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+      })
+    } else {
+      return <h3> No notes for the selected parameters </h3>
+    }
   }
 
   render () {
-    console.log("AllNotes", this.props)
+    console.log("AllNotes", this.state)
     return (
       <>
       <div className="Banner">
@@ -76,11 +111,11 @@ class AllNotes extends React.Component {
 
       <div className="AllNote-Container">
         {
-          this.state.allNotes
+          this.state.toggle
           ?
-          this.renderNoteCards()
+          this.renderSortedNoteCards()
           :
-          null
+          this.renderNoteCards()
         }
       </div>
       </>
