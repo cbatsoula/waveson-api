@@ -15,7 +15,7 @@ class AllNotes extends React.Component {
   }
 
   renderNoteCards = () => {
-    if (this.state.allNotes && this.state.selectBeach === null) {
+    if (this.state.allNotes && this.state.selectBeach === "all") {
       return this.state.allNotes.map( note => {
         return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
       })
@@ -69,6 +69,9 @@ class AllNotes extends React.Component {
     // this.setState({
     //   selectBeach: event.target.value
     // });
+    if (this.state.selectBeach === "all"){
+      console.log("SUBMIT!! ALL beaches")
+    }
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
       if (note.beach_name === this.state.selectBeach){

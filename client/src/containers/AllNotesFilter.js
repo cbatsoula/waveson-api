@@ -21,7 +21,8 @@ class AllNotesFilter extends React.Component {
         <form onSubmit={this.props.handleSubmit}>
         <h3>Filter by...</h3>
         <label>Beach</label>
-          <select value={this.props.selectBeach} onChange={this.props.handleChange} >
+          <select value={this.props.selectBeach} onChange={this.props.handleChange}>
+            <option value="all" onChange={this.props.handleChange}>All</option>
            {this.sortedList()}
           </select>
         <input type="submit" value="Submit" />
