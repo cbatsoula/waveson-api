@@ -621,8 +621,13 @@ input[type=submit] {
 
 .AllNotesFilter-Container {
   display: flex;
-  height: 10%;
+  height: auto;
   width: auto;
   background-color: #3f4a38;
   padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+
 }

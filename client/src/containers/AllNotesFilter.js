@@ -18,7 +18,6 @@ class AllNotesFilter extends React.Component {
     console.log("render props", this.props)
     return (
       <div className="AllNotesFilter-Container">
-
         <form onSubmit={this.props.handleSubmit}>
         <h3>Filter by...</h3>
         <label>Beach</label>
