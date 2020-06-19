@@ -15,7 +15,7 @@ class AllNotes extends React.Component {
   }
 
   renderNoteCards = () => {
-    if (this.state.allNotes) {
+    if (this.state.allNotes && this.state.selectBeach === null) {
       return this.state.allNotes.map( note => {
         return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
       })
