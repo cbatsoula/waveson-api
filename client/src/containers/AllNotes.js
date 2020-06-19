@@ -7,6 +7,8 @@ class AllNotes extends React.Component {
 
   state = {
     allNotes: null,
+    //filter
+    selectBeach: null,
   }
 
   renderNoteCards = () => {
@@ -44,6 +46,23 @@ class AllNotes extends React.Component {
 
   }
 
+  handleChange = (event) => {
+    console.log("event", event.target)
+    this.setState({
+      selectBeach: event.target.value
+    }, () => {console.log("handleChange", this.state)});
+
+  }
+
+  handleSubmit = (event) => {
+    // alert('Beach selected: ' + this.state.value);
+    event.preventDefault();
+    console.log("submit!!", this.state);
+    // this.setState({
+    //   selectBeach: event.target.value
+    // });
+  }
+
   render () {
     console.log("AllNotes", this.props)
     return (
@@ -52,7 +71,7 @@ class AllNotes extends React.Component {
       <Banner title={"All Notes"} />
       </div>
 
-      <AllNotesFilter allBeaches={this.props.allBeaches} allNotes={this.state.allNotes}/>
+      <AllNotesFilter selectBeach={this.state.selectBeach} allBeaches={this.props.allBeaches} allNotes={this.state.allNotes} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
 
 
       <div className="AllNote-Container">

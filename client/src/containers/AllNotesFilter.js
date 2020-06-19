@@ -4,45 +4,45 @@ import NoteCard from '../components/NoteCard';
 class AllNotesFilter extends React.Component {
 
   state = {
-    selectBeach: null,
+    // selectBeach: null,
   }
   componentDidMount = () => {
 
   }
 
-  handleChange = (event) => {
-    console.log("event", event.target)
-    this.setState({
-      selectBeach: event.target.value
-    }, () => {console.log("handleChange", this.state)});
-
-  }
-
-  handleSubmit = (event) => {
-    // alert('Beach selected: ' + this.state.value);
-    event.preventDefault();
-    console.log("submit!!", this.state);
-    // this.setState({
-    //   selectBeach: event.target.value
-    // });
-  }
+  // handleChange = (event) => {
+  //   console.log("event", event.target)
+  //   this.setState({
+  //     selectBeach: event.target.value
+  //   }, () => {console.log("handleChange", this.state)});
+  //
+  // }
+  //
+  // handleSubmit = (event) => {
+  //   // alert('Beach selected: ' + this.state.value);
+  //   event.preventDefault();
+  //   console.log("submit!!", this.state);
+  //   // this.setState({
+  //   //   selectBeach: event.target.value
+  //   // });
+  // }
 
   sortedList = () => {
-    return this.props.allBeaches.map(beach => <option key={beach.id} value={beach.name} onChange={this.handleChange}>{beach.name}</option>);
+    return this.props.allBeaches.map(beach => <option key={beach.id} value={beach.name} onChange={this.props.handleChange}>{beach.name}</option>);
   }
   // <option key={index}>{location}</option>
 
 
   render () {
-    console.log("render state", this.state)
+    console.log("render props", this.props)
 
     return (
       <div className="AllNotesFilter-Container">
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.handleSubmit}>
         <h3>Filter by...</h3>
         <label>Beach</label>
-          <select value={this.state.selectBeach} onChange={this.handleChange} >
+          <select value={this.props.selectBeach} onChange={this.props.handleChange} >
            {this.sortedList()}
           </select>
         <input type="submit" value="Submit" />
