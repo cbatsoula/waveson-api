@@ -120,7 +120,7 @@ class Notes extends React.Component {
           this.renderNoteCards()
         }
 
-        <AllNotes allNotes={this.state.allNotes} notes={this.state.sortedNotes} />
+        <AllNotes allNotes={this.state.allNotes} sortedNotes={this.state.sortedNotes} />
       </div>
       </>
 
