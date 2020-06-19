@@ -8,23 +8,24 @@ class AllNotes extends React.Component {
 
   }
 
-  // renderNotes = () => {
-  //   if (this.props.selectBeach === "all"){
-  //     return this.props.allNotes.map( note => {
-  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
-  //     })
-  //   } else {
-  //     return this.props.sortedNotes.map( note => {
-  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
-  //   })
-  // }
-  //
-  // }
+  renderNotes = () => {
+
+    if (this.props.selectBeach === "all"){
+      return this.props.allNotes.map( note => {
+        return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+      })
+    } else {
+      return this.props.sortedNotes.map( note => {
+        return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+    })
+  }
+
+  }
 
 
   componentDidMount = () => {
-    // this.renderNotes()
-    console.log("yo")
+
+    console.log("yo", this.props)
   }
 
 
@@ -33,6 +34,13 @@ class AllNotes extends React.Component {
     console.log("AllNotes", this.props)
     return (
       <div className="AllNotesS">
+      {
+        this.props.sortedNotes.length > 0
+        ?
+        this.renderNotes()
+        :
+        null
+      }
 
       </div>
 
