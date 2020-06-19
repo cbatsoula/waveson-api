@@ -631,3 +631,10 @@ input[type=submit] {
   flex-direction: column;
 
 }
+
+.AllNotesS {
+  display: flex;
+  height:auto;
+  width: 100%;
+  
+}

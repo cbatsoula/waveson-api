@@ -63,13 +63,17 @@ class Notes extends React.Component {
 
   }
 
+  //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
+  //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
+
+
   handleSubmit = (event) => {
 
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
     if (this.state.selectBeach === "all"){
-      console.log("SUBMIT!! ALL beaches")
+      console.log("SUBMIT!! ALL beaches", this.state)
     }
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
@@ -120,7 +124,7 @@ class Notes extends React.Component {
           this.renderNoteCards()
         }
 
-        <AllNotes allNotes={this.state.allNotes} sortedNotes={this.state.sortedNotes} />
+        <AllNotes selectBeach={this.state.selectBeach} allNotes={this.state.allNotes} sortedNotes={this.state.sortedNotes} />
       </div>
       </>
 

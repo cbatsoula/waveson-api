@@ -1,8 +1,6 @@
 import React from 'react';
 import NoteCard from '../components/NoteCard';
-import Banner from '../components/Banner';
-import AllNotesFilter from './AllNotesFilter';
-import NoteCard from '../components/NoteCard';
+
 
 class AllNotes extends React.Component {
 
@@ -10,9 +8,23 @@ class AllNotes extends React.Component {
 
   }
 
+  // renderNotes = () => {
+  //   if (this.props.selectBeach === "all"){
+  //     return this.props.allNotes.map( note => {
+  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+  //     })
+  //   } else {
+  //     return this.props.sortedNotes.map( note => {
+  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+  //   })
+  // }
+  //
+  // }
+
 
   componentDidMount = () => {
-
+    // this.renderNotes()
+    console.log("yo")
   }
 
 
@@ -20,9 +32,9 @@ class AllNotes extends React.Component {
   render () {
     console.log("AllNotes", this.props)
     return (
-      <>
+      <div className="AllNotesS">
 
-      </>
+      </div>
 
     )
   }
