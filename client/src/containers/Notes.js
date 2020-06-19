@@ -3,7 +3,7 @@ import NoteCard from '../components/NoteCard';
 import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 
-class AllNotes extends React.Component {
+class Notes extends React.Component {
 
   state = {
     allNotes: null,
@@ -63,12 +63,10 @@ class AllNotes extends React.Component {
   }
 
   handleSubmit = (event) => {
-    // alert('Beach selected: ' + this.state.value);
+
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
-    // this.setState({
-    //   selectBeach: event.target.value
-    // });
+
     if (this.state.selectBeach === "all"){
       console.log("SUBMIT!! ALL beaches")
     }
@@ -102,7 +100,7 @@ class AllNotes extends React.Component {
   }
 
   render () {
-    console.log("AllNotes", this.state)
+    console.log("Notes", this.state)
     return (
       <>
       <div className="Banner">
@@ -112,7 +110,7 @@ class AllNotes extends React.Component {
       <AllNotesFilter selectBeach={this.state.selectBeach} allBeaches={this.props.allBeaches} allNotes={this.state.allNotes} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
 
 
-      <div className="AllNote-Container">
+      <div className="Note-Container">
         {
           this.state.toggle
           ?
@@ -127,4 +125,4 @@ class AllNotes extends React.Component {
   }
 }
 
-export default AllNotes;
+export default Notes;
