@@ -20,8 +20,9 @@ class AllNotesFilter extends React.Component {
   }
 
   sortedList = () => {
-    this.props.allBeaches.map((location, index) => <option key={index}>{location}</option>);
+    return this.props.allBeaches.map(beach => <option key={beach.id}>{beach.name}</option>);
   }
+  // <option key={index}>{location}</option>
 
 
   render () {
