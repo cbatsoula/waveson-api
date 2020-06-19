@@ -2,6 +2,7 @@ import React from 'react';
 import NoteCard from '../components/NoteCard';
 import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
+import AllNotes from './AllNotes';
 
 class Notes extends React.Component {
 
@@ -118,6 +119,8 @@ class Notes extends React.Component {
           :
           this.renderNoteCards()
         }
+
+        <AllNotes allNotes={this.state.allNotes} notes={this.state.sortedNotes} />
       </div>
       </>
 
