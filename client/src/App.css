@@ -445,7 +445,7 @@ button:active {
 
   display: flex;
   background-color: #639898;
-  height: 100%;
+  height: auto;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -629,5 +629,14 @@ input[type=submit] {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+
+}
+
+.AllNotesS {
+  display: flex;
+  height: auto;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
 
 }
