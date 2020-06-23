@@ -1,10 +1,12 @@
 import React from 'react';
 import NoteCard from '../components/NoteCard';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 class AllNotesFilter extends React.Component {
 
   state = {
-    // selectBeach: null,
+    // startDate: new Date(),
   }
   componentDidMount = () => {
 
@@ -21,9 +23,13 @@ class AllNotesFilter extends React.Component {
         <form onSubmit={this.props.handleSubmit}>
         <h3>Filter by...</h3>
         <label>Beach</label>
-          <select value={this.props.selectBeach} onChange={this.props.handleChange}>
+          <select value={this.props.selectBeach} onChange={this.props.handleBeachChange}>
             <option value="all" onChange={this.props.handleChange}>All</option>
            {this.sortedList()}
+          </select>
+        <label>Week</label>
+        <DatePicker selected={this.props.startDate} onChange={this.props.handleChange} />
+          <select value={this.props.startDate} onChange={this.props.handleDateChange}>
           </select>
         <input type="submit" value="Submit" />
         </form>
