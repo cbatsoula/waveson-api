@@ -24,13 +24,12 @@ class AllNotesFilter extends React.Component {
         <h3>Filter by...</h3>
         <label>Beach</label>
           <select value={this.props.selectBeach} onChange={this.props.handleBeachChange}>
-            <option value="all" onChange={this.props.handleChange}>All</option>
+            <option value="Select" onChange={this.props.handleBeachChange}>Select</option>
+            <option value="All" onChange={this.props.handleBeachChange}>All</option>
            {this.sortedList()}
           </select>
-        <label>Week</label>
+        <label>Week of </label>
         <DatePicker selected={this.props.startDate} onChange={this.props.handleDateChange} />
-          <select value={this.props.startDate} onChange={this.props.handleDateChange}>
-          </select>
         <input type="submit" value="Submit" />
         </form>
 

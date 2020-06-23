@@ -86,30 +86,32 @@ class Notes extends React.Component {
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
-    if (this.state.selectBeach === "all"){
+    if (this.state.selectBeach === "All"){
       let allNotes = this.state.allNotes
+      console.log("allNotes", allNotes)
       this.setState({
         sortedNotes: allNotes,
-      }, () => {console.log("all!!", this.state)})
+      }, () => {console.log("All!!", this.state)})
+    } else {
+      let holdMe = []
+      let theseNotes = this.state.allNotes.map(note => {
+        if (note.beach_name === this.state.selectBeach){
+          console.log("yah", note)
+          holdMe.push(note)
+          console.log("holdMe", holdMe)
+          return note
+        } else {
+          console.log("nah", note)
+        }
+      })
+      console.log("theseNotes", theseNotes, this.state, holdMe)
+
+      this.setState({
+        sortedNotes: holdMe,
+        toggle: true,
+      })
+
     }
-
-    let holdMe = []
-    let theseNotes = this.state.allNotes.map(note => {
-      if (note.beach_name === this.state.selectBeach){
-        console.log("yah", note)
-        holdMe.push(note)
-        console.log("holdMe", holdMe)
-        return note
-      } else {
-        console.log("nah", note)
-      }
-    })
-    console.log("theseNotes", theseNotes, this.state, holdMe)
-
-    this.setState({
-      sortedNotes: holdMe,
-      toggle: true,
-    })
   }
 
   renderSortedNoteCards = () => {
