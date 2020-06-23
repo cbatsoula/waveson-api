@@ -445,7 +445,7 @@ button:active {
 
   display: flex;
   background-color: #639898;
-  height: 100%;
+  height: auto;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -636,5 +636,7 @@ input[type=submit] {
   display: flex;
   height: auto;
   width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
 
 }

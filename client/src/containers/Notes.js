@@ -73,8 +73,9 @@ class Notes extends React.Component {
     console.log("submit!!", this.state, this.props);
 
     if (this.state.selectBeach === "all"){
+      let allNotes = this.state.allNotes
       this.setState({
-        sortedNotes: this.state.allNotes,
+        sortedNotes: allNotes,
       }, () => {console.log("all!!", this.state)})
     }
 
@@ -88,16 +89,13 @@ class Notes extends React.Component {
       } else {
         console.log("nah", note)
       }
-    }, () => {
-      console.log("theseNotes", theseNotes, this.state, holdMe);
-      this.setState({
-        sortedNotes: holdMe,
-        toggle: true,
-      })
-
     })
     console.log("theseNotes", theseNotes, this.state, holdMe)
 
+    this.setState({
+      sortedNotes: holdMe,
+      toggle: true,
+    })
   }
 
   renderSortedNoteCards = () => {
@@ -105,7 +103,12 @@ class Notes extends React.Component {
       return this.state.sortedNotes.map( note => {
         return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
       })
-    } else {
+    } else if (this.state.allNotes && this.state.selectBeach === "all") {
+        return this.state.allNotes.map( note => {
+          return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
+        })
+
+      } else {
       return <h3> No notes for the selected parameters </h3>
     }
   }
