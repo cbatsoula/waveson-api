@@ -3,6 +3,7 @@ import NoteCard from '../components/NoteCard';
 import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
+import DatePicker from "react-datepicker";
 
 class Notes extends React.Component {
 
@@ -12,11 +13,13 @@ class Notes extends React.Component {
     //filter
     selectBeach: null,
     toggle: false,
+    startDate: new Date(),
+    selectTime: null,
 
   }
 
   renderNoteCards = () => {
-    if (this.state.allNotes && this.state.selectBeach === "all") {
+    if (this.state.allNotes && this.state.selectBeach === "All") {
       return this.state.allNotes.map( note => {
         return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
       })
@@ -53,7 +56,7 @@ class Notes extends React.Component {
 
   }
 
-  handleChange = (event) => {
+  handleBeachChange = (event) => {
     console.log("event", event.target)
     this.setState({
       selectBeach: event.target.value,
@@ -62,6 +65,17 @@ class Notes extends React.Component {
     }, () => {console.log("handleChange", this.state)});
 
   }
+
+  handleDateChange = date => {
+    this.setState({
+      startDate: date
+    }, () => {console.log("handleDateChange", this.state.startDate)});
+
+    let notes = this.state.allNotes.map( note => {
+      return note.created_at
+    })
+    console.log("notes", notes)
+  };
 
   //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
   //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
@@ -72,30 +86,32 @@ class Notes extends React.Component {
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
-    if (this.state.selectBeach === "all"){
+    if (this.state.selectBeach === "All"){
       let allNotes = this.state.allNotes
+      console.log("allNotes", allNotes)
       this.setState({
         sortedNotes: allNotes,
-      }, () => {console.log("all!!", this.state)})
+      }, () => {console.log("All!!", this.state)})
+    } else {
+      let holdMe = []
+      let theseNotes = this.state.allNotes.map(note => {
+        if (note.beach_name === this.state.selectBeach){
+          console.log("yah", note)
+          holdMe.push(note)
+          console.log("holdMe", holdMe)
+          return note
+        } else {
+          console.log("nah", note)
+        }
+      })
+      console.log("theseNotes", theseNotes, this.state, holdMe)
+
+      this.setState({
+        sortedNotes: holdMe,
+        toggle: true,
+      })
+
     }
-
-    let holdMe = []
-    let theseNotes = this.state.allNotes.map(note => {
-      if (note.beach_name === this.state.selectBeach){
-        console.log("yah", note)
-        holdMe.push(note)
-        console.log("holdMe", holdMe)
-        return note
-      } else {
-        console.log("nah", note)
-      }
-    })
-    console.log("theseNotes", theseNotes, this.state, holdMe)
-
-    this.setState({
-      sortedNotes: holdMe,
-      toggle: true,
-    })
   }
 
   renderSortedNoteCards = () => {
@@ -121,7 +137,16 @@ class Notes extends React.Component {
       <Banner title={"All Notes"} />
       </div>
 
-      <AllNotesFilter selectBeach={this.state.selectBeach} allBeaches={this.props.allBeaches} allNotes={this.state.allNotes} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+      <AllNotesFilter
+      selectBeach={this.state.selectBeach}
+      allBeaches={this.props.allBeaches}
+      allNotes={this.state.allNotes}
+      handleBeachChange={this.handleBeachChange}
+      handleSubmit={this.handleSubmit}
+      handleDateChange={this.handleDateChange}
+      selectTime={this.state.selectTime}
+      selected={this.state.startDate}
+      onChange={this.handleDateChange}/>
 
 
       <div className="Note-Container">

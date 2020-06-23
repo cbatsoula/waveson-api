@@ -1,7 +1,9 @@
 {
   "name": "test-waveson-api",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "react-datepicker": "^3.0.0"
+  },
   "version": "1.0.0",
   "description": "marine weather tracking app with journaling and photo uploading feature",
   "main": "index.js",
@@ -13,9 +15,8 @@
     "yarn": "1.22.4"
   },
   "scripts": {
-   "build": "yarn --cwd client install && yarn --cwd client build",
-   "deploy": "cp -a client/build/. public/",
-   "heroku-postbuild": "yarn build && yarn deploy"
- }
-
+    "build": "yarn --cwd client install && yarn --cwd client build",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "yarn build && yarn deploy"
+  }
 }
