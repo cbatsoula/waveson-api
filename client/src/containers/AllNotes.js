@@ -35,11 +35,11 @@ class AllNotes extends React.Component {
     return (
       <div className="AllNotesS">
       {
-        this.props.sortedNotes.length > 0
+        this.props.toggle
         ?
-        this.renderNotes()
+        this.props.renderSortedNoteCards()
         :
-        null
+        this.props.renderNoteCards()
       }
 
       </div>

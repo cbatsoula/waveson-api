@@ -73,8 +73,11 @@ class Notes extends React.Component {
     console.log("submit!!", this.state, this.props);
 
     if (this.state.selectBeach === "all"){
-      console.log("SUBMIT!! ALL beaches", this.state)
+      this.setState({
+        sortedNotes: this.state.allNotes,
+      }, () => {console.log("all!!", this.state)})
     }
+
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
       if (note.beach_name === this.state.selectBeach){
@@ -85,13 +88,16 @@ class Notes extends React.Component {
       } else {
         console.log("nah", note)
       }
+    }, () => {
+      console.log("theseNotes", theseNotes, this.state, holdMe);
+      this.setState({
+        sortedNotes: holdMe,
+        toggle: true,
+      })
+
     })
     console.log("theseNotes", theseNotes, this.state, holdMe)
 
-    this.setState({
-      sortedNotes: holdMe,
-      toggle: true,
-    })
   }
 
   renderSortedNoteCards = () => {
@@ -116,15 +122,27 @@ class Notes extends React.Component {
 
 
       <div className="Note-Container">
+
         {
           this.state.toggle
           ?
-          this.renderSortedNoteCards()
+          <AllNotes
+          selectBeach={this.state.selectBeach}
+          allNotes={this.state.allNotes}
+          sortedNotes={this.state.sortedNotes}
+          renderNoteCards={this.renderNoteCards}
+          renderSortedNoteCards={this.renderSortedNoteCards}
+          toggle={this.state.toggle}  />
           :
-          this.renderNoteCards()
-        }
+          <AllNotes
+          selectBeach={this.state.selectBeach}
+          allNotes={this.state.allNotes}
+          sortedNotes={this.state.sortedNotes}
+          renderNoteCards={this.renderNoteCards}
+          renderSortedNoteCards={this.renderSortedNoteCards}
+          toggle={this.state.toggle} />
 
-        <AllNotes selectBeach={this.state.selectBeach} allNotes={this.state.allNotes} sortedNotes={this.state.sortedNotes} />
+        }
       </div>
       </>
 
