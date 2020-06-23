@@ -28,7 +28,7 @@ class AllNotesFilter extends React.Component {
            {this.sortedList()}
           </select>
         <label>Week</label>
-        <DatePicker selected={this.props.startDate} onChange={this.props.handleChange} />
+        <DatePicker selected={this.props.startDate} onChange={this.props.handleDateChange} />
           <select value={this.props.startDate} onChange={this.props.handleDateChange}>
           </select>
         <input type="submit" value="Submit" />
