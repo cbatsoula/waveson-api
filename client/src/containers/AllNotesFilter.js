@@ -2,6 +2,8 @@ import React from 'react';
 import NoteCard from '../components/NoteCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Datetime from "react-datetime";
+
 
 class AllNotesFilter extends React.Component {
 
@@ -16,6 +18,7 @@ class AllNotesFilter extends React.Component {
     return this.props.allBeaches.map(beach => <option key={beach.id} value={beach.name} onChange={this.props.handleChange}>{beach.name}</option>);
   }
 
+  // <DatePicker selected={this.props.startDate} onChange={this.props.handleDateChange} />
   render () {
     console.log("render props", this.props)
     return (
@@ -29,7 +32,7 @@ class AllNotesFilter extends React.Component {
            {this.sortedList()}
           </select>
         <label>Week of </label>
-        <DatePicker selected={this.props.startDate} onChange={this.props.handleDateChange} />
+        <Datetime onChange={this.props.handleDateChange}/>
         <input type="submit" value="Submit" />
         </form>
 

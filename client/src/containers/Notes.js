@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
 import DatePicker from "react-datepicker";
+import Datetime from "react-datetime";
 
 class Notes extends React.Component {
 
@@ -67,6 +68,7 @@ class Notes extends React.Component {
   }
 
   handleDateChange = date => {
+    console.log("date", date)
     this.setState({
       startDate: date
     }, () => {console.log("handleDateChange", this.state.startDate)});
