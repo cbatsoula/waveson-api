@@ -74,7 +74,8 @@ class Notes extends React.Component {
     let notes = this.state.allNotes.map( note => {
       return note.created_at
     })
-    console.log("notes", notes)
+    let time = this.state.startDate
+    console.log("notes", notes, "time", time)
   };
 
   //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
