@@ -4,6 +4,7 @@ import NoteCard from '../components/NoteCard';
 import PhotoUpload from './PhotoUpload';
 import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import cloudinary from 'cloudinary-react';
+import Loader from '../components/Loader'
 
 
 class NoteStuff extends React.Component {
@@ -295,7 +296,8 @@ class NoteStuff extends React.Component {
         ?
         this.renderNoteCards()
         :
-        <div className="Loader"/>
+        <Loader/>
+
       }
 
       </div>

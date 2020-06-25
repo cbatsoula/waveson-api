@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
 import DatePicker from "react-datepicker";
+import Datetime from "react-datetime";
 
 class Notes extends React.Component {
 
@@ -67,6 +68,7 @@ class Notes extends React.Component {
   }
 
   handleDateChange = date => {
+    console.log("date", date)
     this.setState({
       startDate: date
     }, () => {console.log("handleDateChange", this.state.startDate)});
@@ -74,7 +76,8 @@ class Notes extends React.Component {
     let notes = this.state.allNotes.map( note => {
       return note.created_at
     })
-    console.log("notes", notes)
+    let time = this.state.startDate
+    console.log("notes", notes, "time", time)
   };
 
   //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
