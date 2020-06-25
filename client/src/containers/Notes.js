@@ -67,18 +67,24 @@ class Notes extends React.Component {
 
   }
 
+  begForMe = (time) => {
+    console.log("be there for me", time, "beg for me", this.state, "you're the crowd come on give it back to me", this.props)
+  }
+
   handleDateChange = date => {
-    console.log("date", date)
+    console.log("incoming date", date)
     this.setState({
-      startDate: date
-    }, () => {console.log("handleDateChange", this.state.startDate)});
+      startDate: date._d
+    }, () => {console.log("handleDateChange SET", this.state.startDate)});
 
     let notes = this.state.allNotes.map( note => {
       return note.created_at
     })
     let time = this.state.startDate
-    console.log("notes", notes, "time", time)
+    this.begForMe(time)
+
   };
+
 
   //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
   //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
