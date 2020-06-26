@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NoteCard from '../components/NoteCard';
 import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
@@ -105,7 +105,7 @@ class Notes extends React.Component {
   handleEndChange = date => {
     this.setState({
       endDate: date
-    })
+    }, () => {console.log("end change", this.state)})
   }
 
 
@@ -161,6 +161,16 @@ class Notes extends React.Component {
     }
   }
 
+
+  setStartDate = () => {
+    const [startDate, setStartDate] = useState(new Date());
+
+  };
+
+  setEndDate = () => {
+    const [endDate, setEndDate] = useState(new Date());
+  }
+
   render () {
     console.log("Notes", this.state)
     return (
@@ -177,10 +187,12 @@ class Notes extends React.Component {
       handleSubmit={this.handleSubmit}
       handleDateChange={this.handleDateChange}
       // selectTime={this.state.selectTime}
-      selected={this.state.startDate}
-      selected={this.state.endDate}
+      selectedS={this.state.startDate}
+      selectedE={this.state.endDate}
       handleStartChange={this.handleStartChange}
       handleEndChange={this.handleEndChange}
+      setEndDate={this.setEndDate}
+      setStartDate={this.setStartDate}
       minDate={this.state.startDate}
       />
 

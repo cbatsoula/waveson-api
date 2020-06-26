@@ -33,20 +33,21 @@ class AllNotesFilter extends React.Component {
           </select>
         <label>Between these dates</label>
           <DatePicker
-          dateFormat="MM/DD/YYYY"
+          dateFormat="MM/DD/yyyy"
           startDate={this.props.startDate}
           endDate={this.props.endDate}
-          selected={this.props.startDate}
+          selectedS={this.props.startDate}
           selectsStart
-          onChange={(date) => {this.props.handleStartChange(date)}}/>
+          onChange={this.props.handleStartChange}/>
           <DatePicker
-          dateFormat="MM/DD/YYYY"
+          dateFormat="MM/DD/yyyy"
           startDate={this.props.startDate}
           endDate={this.props.endDate}
           minDate={this.props.startDate}
-          selected={this.props.endDate}
+          selectedE={this.props.endDate}
           selectsEnd
           onChange={(date) => {this.props.handleEndChange(date)}}/>
+
         <input type="submit" value="Submit" />
         </form>
 
