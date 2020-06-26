@@ -2,7 +2,7 @@ import React from 'react';
 import NoteCard from '../components/NoteCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Datetime from "react-datetime";
+// import Datetime from "react-datetime";
 
 
 class AllNotesFilter extends React.Component {
@@ -32,7 +32,7 @@ class AllNotesFilter extends React.Component {
            {this.sortedList()}
           </select>
         <label>Week of </label>
-        <Datetime onChange={this.props.handleDateChange}/>
+        <DatePicker dateFormat="MM/DD/YYYY" selected={this.props.startDate} onChange={this.props.handleDateChange}/>
         <input type="submit" value="Submit" />
         </form>
 

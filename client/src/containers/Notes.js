@@ -67,21 +67,30 @@ class Notes extends React.Component {
 
   }
 
-  begForMe = (time) => {
-    console.log("be there for me", time, "beg for me", this.state, "you're the crowd come on give it back to me", this.props)
+  begForMe = () => {
+    let filterNotes = []
+    console.log("be there for me", this.state, "you're the crowd come on give it back to me", this.props, "beg for me, be there for me", this.state.startDate.toLocaleDateString('en-US'))
+    let notes = this.state.allNotes.map( note => {
+      if (note.created_at) {
+        filterNotes.push(note)
+      }
+
+    })
+    console.log("begForMe", filterNotes, notes)
   }
 
   handleDateChange = date => {
     console.log("incoming date", date)
     this.setState({
-      startDate: date._d
-    }, () => {console.log("handleDateChange SET", this.state.startDate)});
+      startDate: date
+    }, () => {this.begForMe();
+      console.log("handleDateChange SET", this.state.startDate)});
 
-    let notes = this.state.allNotes.map( note => {
-      return note.created_at
-    })
-    let time = this.state.startDate
-    this.begForMe(time)
+    // let notes = this.state.allNotes.map( note => {
+    //   return note.created_at
+    // })
+
+
 
   };
 
