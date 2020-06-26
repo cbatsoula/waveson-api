@@ -2,7 +2,7 @@ import React from 'react';
 import NoteCard from '../components/NoteCard';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import Datetime from "react-datetime";
+import moment from 'moment';
 
 
 class AllNotesFilter extends React.Component {
@@ -31,20 +31,23 @@ class AllNotesFilter extends React.Component {
             <option value="All" onChange={this.props.handleBeachChange}>All</option>
            {this.sortedList()}
           </select>
-        <label>Between these dates</label>
+        // <label>Between these dates</label>
           <DatePicker
-          dateFormat="MM/DD/yyyy"
+          placeholderText="Click to select a date"
+          dateFormat="MM/dd/yyyy"
           startDate={this.props.startDate}
           endDate={this.props.endDate}
-          selectedS={this.props.startDate}
+          selected={this.props.startDate}
           selectsStart
           onChange={this.props.handleStartChange}/>
+
           <DatePicker
-          dateFormat="MM/DD/yyyy"
+          placeholderText="Click to select a date"
+          dateFormat="MM/dd/yyyy"
           startDate={this.props.startDate}
           endDate={this.props.endDate}
           minDate={this.props.startDate}
-          selectedE={this.props.endDate}
+          selected={this.props.endDate}
           selectsEnd
           onChange={(date) => {this.props.handleEndChange(date)}}/>
 
