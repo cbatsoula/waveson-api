@@ -5,6 +5,7 @@ import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
 import DatePicker from "react-datepicker";
 import Datetime from "react-datetime";
+import moment from 'moment';
 
 class Notes extends React.Component {
 
@@ -16,6 +17,7 @@ class Notes extends React.Component {
     toggle: false,
     startDate: new Date(),
     selectTime: null,
+    endDate: new Date(),
 
   }
 
@@ -70,16 +72,22 @@ class Notes extends React.Component {
   begForMe = () => {
     let filterNotes = []
     console.log("be there for me", this.state, "you're the crowd come on give it back to me", this.props, "beg for me, be there for me", this.state.startDate.toLocaleDateString('en-US'))
+
+    let formatDate = this.state.startDate.toLocaleDateString('en-US')
+    debugger;
     let notes = this.state.allNotes.map( note => {
       if (note.created_at) {
+        // console.log("will THIS WORK????", note.created_at.toLocaleDateString('en-US'), note)
+        let wut = moment(note.created_at, 'DD/MM/YYYY').format()
+        console.log("wut", wut, note.created_at)
         filterNotes.push(note)
       }
 
     })
-    console.log("begForMe", filterNotes, notes)
+    console.log("begForMe: filterNotes", filterNotes)
   }
 
-  handleDateChange = date => {
+  handleStartChange = date => {
     console.log("incoming date", date)
     this.setState({
       startDate: date
@@ -93,6 +101,12 @@ class Notes extends React.Component {
 
 
   };
+
+  handleEndChange = date => {
+    this.setState({
+      endDate: date
+    })
+  }
 
 
   //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
@@ -163,8 +177,11 @@ class Notes extends React.Component {
       handleSubmit={this.handleSubmit}
       handleDateChange={this.handleDateChange}
       selectTime={this.state.selectTime}
-      selected={this.state.startDate}
-      onChange={this.handleDateChange}/>
+      selectedStart={this.state.startDate}
+      selectedEnd={this.state.endDate}
+      handleStartChange={this.handleStartChange}
+      handleEndChange={this.handleEndChange}
+      />
 
 
       <div className="Note-Container">
