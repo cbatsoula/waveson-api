@@ -186,9 +186,9 @@ class Notes extends React.Component {
       handleBeachChange={this.handleBeachChange}
       handleSubmit={this.handleSubmit}
       handleDateChange={this.handleDateChange}
-      // selectTime={this.state.selectTime}
-      selectedS={this.state.startDate}
-      selectedE={this.state.endDate}
+
+      startDate={this.state.startDate}
+      endDate={this.state.endDate}
       handleStartChange={this.handleStartChange}
       handleEndChange={this.handleEndChange}
       setEndDate={this.setEndDate}
