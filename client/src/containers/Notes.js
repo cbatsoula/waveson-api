@@ -4,7 +4,7 @@ import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
 import DatePicker from "react-datepicker";
-import Datetime from "react-datetime";
+import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 
 class Notes extends React.Component {
@@ -15,8 +15,8 @@ class Notes extends React.Component {
     //filter
     selectBeach: null,
     toggle: false,
+    // selectTime: null,
     startDate: new Date(),
-    selectTime: null,
     endDate: new Date(),
 
   }
@@ -74,7 +74,7 @@ class Notes extends React.Component {
     console.log("be there for me", this.state, "you're the crowd come on give it back to me", this.props, "beg for me, be there for me", this.state.startDate.toLocaleDateString('en-US'))
 
     let formatDate = this.state.startDate.toLocaleDateString('en-US')
-    debugger;
+
     let notes = this.state.allNotes.map( note => {
       if (note.created_at) {
         // console.log("will THIS WORK????", note.created_at.toLocaleDateString('en-US'), note)
@@ -176,11 +176,12 @@ class Notes extends React.Component {
       handleBeachChange={this.handleBeachChange}
       handleSubmit={this.handleSubmit}
       handleDateChange={this.handleDateChange}
-      selectTime={this.state.selectTime}
-      selectedStart={this.state.startDate}
-      selectedEnd={this.state.endDate}
+      // selectTime={this.state.selectTime}
+      selected={this.state.startDate}
+      selected={this.state.endDate}
       handleStartChange={this.handleStartChange}
       handleEndChange={this.handleEndChange}
+      minDate={this.state.startDate}
       />
 
 

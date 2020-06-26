@@ -31,15 +31,22 @@ class AllNotesFilter extends React.Component {
             <option value="All" onChange={this.props.handleBeachChange}>All</option>
            {this.sortedList()}
           </select>
-        <label>Week of </label>
-        <DatePicker
-        dateFormat="MM/DD/YYYY"
-        selected={this.props.startDate}
-        onChange={this.props.handleStartChange}/>
-        <DatePicker
-        dateFormat="MM/DD/YYYY"
-        selected={this.props.endDate}
-        onChange={this.props.handleEndChange}/>
+        <label>Between these dates</label>
+          <DatePicker
+          dateFormat="MM/DD/YYYY"
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+          selected={this.props.startDate}
+          selectsStart
+          onChange={(date) => {this.props.handleStartChange(date)}}/>
+          <DatePicker
+          dateFormat="MM/DD/YYYY"
+          startDate={this.props.startDate}
+          endDate={this.props.endDate}
+          minDate={this.props.startDate}
+          selected={this.props.endDate}
+          selectsEnd
+          onChange={(date) => {this.props.handleEndChange(date)}}/>
         <input type="submit" value="Submit" />
         </form>
 
