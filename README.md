@@ -8,7 +8,6 @@ Because I spent the majority of my summers at the beach growing up, WavesOn was 
 
 For the backend there are Users, Beaches, Favorites, and Notes. A User can have many Beaches through Favorites, and through Notes. This way a User can view Beaches, save a Beach to Favs, see all Favorite Beaches, view Beach data, and a User can save a Note with a photo to a Beach, regardless if the Beach is a Favorite or not. I'm utilizing two has-many-through relationships.
 
-details for frontend, maybe? React is a system of components and very much "turtles on turtles".
+/*details for frontend, maybe? React is a system of components and very much "turtles on turtles".
 
 LinkedIn: https://www.linkedin.com/in/catherine-batsoula-3983a218a/
--Github icon
