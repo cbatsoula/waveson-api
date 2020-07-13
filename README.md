@@ -6,7 +6,7 @@ WavesOn is a marine weather tracking web app I built because I often want to kno
 
 Because I spent the majority of my summers at the beach growing up, WavesOn was a real passion project for me that I am very proud of. I built WavesOn using Ruby on Rails for the backend, React.js for frontend, CSS for the style, and Adobe Photoshop for the loading illustration.
 
-diagrams? for backend relationships
+For the backend there are Users, Beaches, Favorites, and Notes. A User can have many Beaches through Favorites, and through Notes. This way a User can view Beaches, save a Beach to Favs, see all Favorite Beaches, view Beach data, and a User can save a Note with a photo to a Beach, regardless if the Beach is a Favorite or not. I'm utilizing two has-many-through relationships.
 
 details for frontend, maybe? React is a system of components and very much "turtles on turtles".
 
