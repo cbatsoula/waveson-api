@@ -5,6 +5,8 @@ class NoteCard extends React.Component {
   formatDate = (string) => {
     var options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(this.props.note.created_at).toLocaleString([],options);
+    //
+    // note.created_at.split("T")
 
   }
 
