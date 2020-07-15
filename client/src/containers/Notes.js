@@ -70,6 +70,7 @@ class Notes extends React.Component {
   }
 
   begForMe = () => {
+    // yes I was listening to Korn and sometimes making more names for variables and functions is hard
     let filterNotes = []
     console.log("be there for me", this.state, "you're the crowd come on give it back to me", this.props, "beg for me, be there for me", this.state.startDate.toLocaleDateString('en-US'))
 
@@ -132,6 +133,21 @@ class Notes extends React.Component {
           holdMe.push(note)
           console.log("holdMe", holdMe)
           return note
+        } else if (this.state.startDate && this.state.endDate){
+          console.log("else if", this.state)
+          console.log("and we have ", note.created_at)
+          var format = function(input) {
+          var array = (input || '').toString().split(/\-/g);
+          array.push(array.shift());
+          return array.join('/') || null;
+        };
+        console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
+        console.log(format(note.created_at.split("T")));
+        console.log(format('2000-12-01'));
+        console.log(format(''));
+        console.log(format(null));
+        debugger;
+
         } else {
           console.log("nah", note)
         }
