@@ -122,7 +122,7 @@ class Notes extends React.Component {
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
       //it doesnt seem like i NEED a switch, I'd have two switch cases with just two or three cases so maybe a switch case is not my solution but a creative way to use if/else if/else with a nested if within the else if of beach name, and else if of date-time
-      
+
       // switch (expression) {
       //   case x:
       //   //
@@ -134,6 +134,8 @@ class Notes extends React.Component {
       //   //
       // }
 
+      // if the user selects to see notes from all beaches = show all Notes
+      // what if the user wants to see all Notes from one week?
       if (this.state.selectBeach === "All"){
         let allNotes = this.state.allNotes
         console.log("allNotes", allNotes)
@@ -141,11 +143,18 @@ class Notes extends React.Component {
           sortedNotes: allNotes,
         }, () => {console.log("All!!", this.state)})
 
+
+      // else, if the user selects a beach, show all notes from that beach
+      //if this.state.startDate compare dates, sort notes and spit them out
       } else if (note.beach_name === this.state.selectBeach) {
         console.log("if", note)
         holdMe.push(note)
         console.log("holdMe", holdMe)
         return note
+
+
+      //else, if the user selects a time period, show notes from that time period (layers on top of or after the previous, so all notes from THAT beach under this time)
+      //this would NOT layer on top of if All beaches are selected
       } else if (this.state.startDate && this.state.endDate){
         console.log("else if", this.state)
         let formatDate = note.created_at.split("T")
@@ -156,16 +165,22 @@ class Notes extends React.Component {
           var array = (input || '').toString().split(/\-/g);
           array.push(array.shift());
           return array.join('/') || null;
-        };
+        }
 
-        //compare the date with justDate, if justDate fitz within the zone then holdMe.push(note)
+        //nested if, this.state.selectBeach === ALL, show notes from all beaches within this time frame
+        if (this.state.selectBeach === "All") {
+          //compare the date with justDate, if justDate fitz within the zone then holdMe.push(note)
+        }
+        // nested else if,
+
+
         console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
         console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
 
         debugger;
 
-
+        //if no selection, show nothing
       } else {
           console.log("nah", note)
         }
