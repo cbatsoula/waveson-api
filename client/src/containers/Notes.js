@@ -110,10 +110,6 @@ class Notes extends React.Component {
   }
 
 
-  //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
-  //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
-
-
 
 
   handleSubmit = (event) => {
@@ -128,8 +124,21 @@ class Notes extends React.Component {
     console.log("submit!!", this.state, this.props);
 
     let holdMe = []
+    let compare = []
     let theseNotes = this.state.allNotes.map(note => {
-      //it doesnt seem like i NEED a switch, I'd have two switch cases with just two or three cases so maybe a switch case is not my solution but a creative way to use if/else if/else with a nested if within the else if of beach name, and else if of date-time
+    //i can either sort and spit with arrays in the backend or frontend
+    //the cons of doing it in client is it will take a while for all this computing-i think
+    //the cons of doing in backend would be - more fetch requests which also take time but learning to manipulate more in the backend could be good for me as a developer bc its safer to do that generally speaking, my app doesnt hold sensitive data like that so I have less conseq.
+    //i miss rubber ducking talking out my code but studio lyfe means constant noise
+
+      //it does seem like i NEED a switch statement for at least three conditions
+      //All beaches
+        //all notes from all beaches
+        //some notes from all beaches based on time slot
+      //Selected beach
+        //all notes from selected
+        //some notes from selected beach based on time slot
+      //
 
       // switch (expression) {
       //   case x:
@@ -168,14 +177,17 @@ class Notes extends React.Component {
         let formatDate = note.created_at.split("T")
         let justDate = formatDate.shift()
 
+
         console.log("and we have ", justDate)
         var format = function(input) {
           var array = (input || '').toString().split(/\-/g);
           array.push(array.shift());
           return array.join('/') || null;
         }
+        let a1 = format(justDate)
+        compare.push(a1)
 
-        console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
+        console.log("compare array", compare)
         console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
         debugger;
