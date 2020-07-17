@@ -121,6 +121,18 @@ class Notes extends React.Component {
 
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
+      //it doesnt seem like i NEED a switch, I'd have two switch cases with just two or three cases so maybe a switch case is not my solution but a creative way to use if/else if/else with a nested if within the else if of beach name, and else if of date-time
+      
+      // switch (expression) {
+      //   case x:
+      //   //
+      //   break;
+      //   case y:
+      //   //
+      //   break;
+      //   default:
+      //   //
+      // }
 
       if (this.state.selectBeach === "All"){
         let allNotes = this.state.allNotes
@@ -146,6 +158,7 @@ class Notes extends React.Component {
           return array.join('/') || null;
         };
 
+        //compare the date with justDate, if justDate fitz within the zone then holdMe.push(note)
         console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
         console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
