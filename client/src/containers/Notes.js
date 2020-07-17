@@ -119,36 +119,41 @@ class Notes extends React.Component {
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
-    if (this.state.selectBeach === "All"){
-      let allNotes = this.state.allNotes
-      console.log("allNotes", allNotes)
-      this.setState({
-        sortedNotes: allNotes,
-      }, () => {console.log("All!!", this.state)})
-    } else {
-      let holdMe = []
-      let theseNotes = this.state.allNotes.map(note => {
-        if (note.beach_name === this.state.selectBeach){
-          console.log("yah", note)
-          holdMe.push(note)
-          console.log("holdMe", holdMe)
-          return note
-        } else if (this.state.startDate && this.state.endDate){
-          console.log("else if", this.state)
-          console.log("and we have ", note.created_at)
-          var format = function(input) {
+    let holdMe = []
+    let theseNotes = this.state.allNotes.map(note => {
+
+      if (this.state.selectBeach === "All"){
+        let allNotes = this.state.allNotes
+        console.log("allNotes", allNotes)
+        this.setState({
+          sortedNotes: allNotes,
+        }, () => {console.log("All!!", this.state)})
+
+      } else if (note.beach_name === this.state.selectBeach) {
+        console.log("if", note)
+        holdMe.push(note)
+        console.log("holdMe", holdMe)
+        return note
+      } else if (this.state.startDate && this.state.endDate){
+        console.log("else if", this.state)
+        let formatDate = note.created_at.split("T")
+        let justDate = formatDate.shift()
+
+        console.log("and we have ", justDate)
+        var format = function(input) {
           var array = (input || '').toString().split(/\-/g);
           array.push(array.shift());
           return array.join('/') || null;
         };
+
         console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
-        console.log(format(note.created_at.split("T")));
+        console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
-        console.log(format(''));
-        console.log(format(null));
+
         debugger;
 
-        } else {
+
+      } else {
           console.log("nah", note)
         }
       })
@@ -160,7 +165,6 @@ class Notes extends React.Component {
       })
 
     }
-  }
 
   renderSortedNoteCards = () => {
     if (this.state.sortedNotes.length > 0) {
