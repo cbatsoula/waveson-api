@@ -169,6 +169,7 @@ class Notes extends React.Component {
 
         //nested if, this.state.selectBeach === ALL, show notes from all beaches within this time frame
         if (this.state.selectBeach === "All") {
+          console.log(" All Beaches from StartDate, else if - if")
           //compare the date with justDate, if justDate fitz within the zone then holdMe.push(note)
         }
         // nested else if,
