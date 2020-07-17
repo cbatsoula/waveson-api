@@ -114,14 +114,36 @@ class Notes extends React.Component {
   //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
 
 
+
+
   handleSubmit = (event) => {
+    let formatDate = function(string) {
+      var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      return new Date(string).toLocaleString([],options);
+    }
+
+    console.log("handleSubmit - formatDate on state", formatDate(this.state.startDate), formatDate(this.state.endDate))
 
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
     let holdMe = []
     let theseNotes = this.state.allNotes.map(note => {
+      //it doesnt seem like i NEED a switch, I'd have two switch cases with just two or three cases so maybe a switch case is not my solution but a creative way to use if/else if/else with a nested if within the else if of beach name, and else if of date-time
 
+      // switch (expression) {
+      //   case x:
+      //   //
+      //   break;
+      //   case y:
+      //   //
+      //   break;
+      //   default:
+      //   //
+      // }
+
+      // if the user selects to see notes from all beaches = show all Notes
+      // what if the user wants to see all Notes from one week?
       if (this.state.selectBeach === "All"){
         let allNotes = this.state.allNotes
         console.log("allNotes", allNotes)
@@ -129,11 +151,18 @@ class Notes extends React.Component {
           sortedNotes: allNotes,
         }, () => {console.log("All!!", this.state)})
 
+
+      // else, if the user selects a beach, show all notes from that beach
+      //if this.state.startDate compare dates, sort notes and spit them out
       } else if (note.beach_name === this.state.selectBeach) {
         console.log("if", note)
         holdMe.push(note)
         console.log("holdMe", holdMe)
         return note
+
+
+      //else, if the user selects a time period, show notes from that time period (layers on top of or after the previous, so all notes from THAT beach under this time)
+      //this would NOT layer on top of if All beaches are selected
       } else if (this.state.startDate && this.state.endDate){
         console.log("else if", this.state)
         let formatDate = note.created_at.split("T")
@@ -144,15 +173,14 @@ class Notes extends React.Component {
           var array = (input || '').toString().split(/\-/g);
           array.push(array.shift());
           return array.join('/') || null;
-        };
+        }
 
         console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
         console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
-
         debugger;
 
-
+        //if no selection, show nothing
       } else {
           console.log("nah", note)
         }
