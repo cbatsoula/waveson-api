@@ -114,7 +114,15 @@ class Notes extends React.Component {
   //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
 
 
+
+
   handleSubmit = (event) => {
+    let formatDate = function(string) {
+      var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+      return new Date(string).toLocaleString([],options);
+    }
+
+    console.log("handleSubmit - formatDate on state", formatDate(this.state.startDate), formatDate(this.state.endDate))
 
     event.preventDefault();
     console.log("submit!!", this.state, this.props);
@@ -167,18 +175,9 @@ class Notes extends React.Component {
           return array.join('/') || null;
         }
 
-        //nested if, this.state.selectBeach === ALL, show notes from all beaches within this time frame
-        if (this.state.selectBeach === "All") {
-          console.log(" All Beaches from StartDate, else if - if")
-          //compare the date with justDate, if justDate fitz within the zone then holdMe.push(note)
-        }
-        // nested else if,
-
-
         console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
         console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
-
         debugger;
 
         //if no selection, show nothing
