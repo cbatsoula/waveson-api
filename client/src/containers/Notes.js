@@ -186,6 +186,7 @@ class Notes extends React.Component {
         }
         let a1 = format(justDate)
         compare.push(a1)
+        holdMe.push(note)
 
         console.log("compare array", compare)
         console.log("format!!!!!!!", format(justDate));
