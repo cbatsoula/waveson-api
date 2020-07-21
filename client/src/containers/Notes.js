@@ -112,8 +112,9 @@ class Notes extends React.Component {
 
 
   formatDate = function(string) {
-    var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     return new Date(string).toLocaleString([],options);
+    // 2-digit
   }
 
   handleSubmit = (event) => {
@@ -201,25 +202,25 @@ class Notes extends React.Component {
         // 1 if the referenceStr occurs after compareString;
         // 0 if they are equivalent;
 
-        console.log("start", formatStart.localeCompare(a1))
+        console.log("start - a1:",formatStart,":",a1, formatStart.localeCompare(a1))
         //is formatStart before or after a1?
         //1 fs 06/19/2020 is after 06/18/2020 a1 - do not push
         //1 fs 06/19/2020 is ...after 06/19/2020 a1 .... push
         //1 fs 06/19/2020 is after 06/25/2020...not true
 
-        console.log("end - a1", formatEnd.localeCompare(a1))
+        console.log("end - a1:",formatEnd,":",a1, formatEnd.localeCompare(a1))
         // is formatEnd before or after a1?
         //1 06/24/2020 is after 06/18/2020 a1 - push
         //1 fe 06/24/2020 is after 06/19/2020 a1 - push
         //1 fe 06/24/2020 is after 06/25/2020 not true
 
-        console.log("a1 - end", a1.localeCompare(formatEnd))
+        console.log("a1 - end:",a1,":",formatEnd, a1.localeCompare(formatEnd))
         //is a1 before or after formatEnd?
         //-1 06/18/2020 is before 06/24/2020 - push
         //-1 06/19/2020 is before 06/24/2020 - push
         //-1 06/25/2020 is before 06/24/2020 not true
 
-        console.log("a1 - start", a1.localeCompare(formatStart))
+        console.log("a1 - start:",a1,":",formatStart, a1.localeCompare(formatStart))
         //is a1 before or after formatStart?
         //1
 
