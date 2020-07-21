@@ -196,17 +196,20 @@ class Notes extends React.Component {
         let formatEnd = this.formatDate(this.state.endDate)
         console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
         console.log("start", formatStart.localeCompare(a1))
+        //is formatStart before or after a1?
+        console.log("end - a1", formatEnd.localeCompare(a1))
+        // is formatEnd before or after a1?
+        console.log("a1 - end", a1.localeCompare(formatEnd))
+        //is a1 before or after formatEnd?
+
         //if this returns 1, that note comes after
         //if this returns 0, that note is equal
         //if it returns -1, that note comes beforee
-        console.log("end - a1", formatEnd.localeCompare(a1))
-        console.log("a1 - end", a1.localeCompare(formatEnd))
 
         compare.push(a1)
         holdMe.push(note)
 
         console.log("compare array", compare)
-        console.log("format!!!!!!!", format(justDate));
         console.log(format('2000-12-01'));
         debugger;
 
