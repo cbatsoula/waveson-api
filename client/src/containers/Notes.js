@@ -204,25 +204,27 @@ class Notes extends React.Component {
 
         console.log("start - a1:",formatStart,":",a1, formatStart.localeCompare(a1))
         //is formatStart before or after a1?
-        //1 fs 06/19/2020 is after 06/18/2020 a1 - do not push
-        //1 fs 06/19/2020 is ...after 06/19/2020 a1 .... push
-        //1 fs 06/19/2020 is after 06/25/2020...not true
+        //-1 06/14/2020 is before 06/18/2020 - true, push
+        //-1 06/14/2020 is before 06/19/2020 - true, push
+        //-1 06/14/2020 is before 06/25/2020 - true, but a1 is after fE
 
         console.log("end - a1:",formatEnd,":",a1, formatEnd.localeCompare(a1))
         // is formatEnd before or after a1?
-        //1 06/24/2020 is after 06/18/2020 a1 - push
-        //1 fe 06/24/2020 is after 06/19/2020 a1 - push
-        //1 fe 06/24/2020 is after 06/25/2020 not true
+        //1 06/20/2020 is after 06/18/2020 -  true, push
+        //1 06/20/2020 is after 06/19/2020 ...not
+        //-1 06/20/2020 is before 06/25/2020 - true, but dont push
 
         console.log("a1 - end:",a1,":",formatEnd, a1.localeCompare(formatEnd))
         //is a1 before or after formatEnd?
-        //-1 06/18/2020 is before 06/24/2020 - push
-        //-1 06/19/2020 is before 06/24/2020 - push
-        //-1 06/25/2020 is before 06/24/2020 not true
+        //-1 06/18/2020 is before 06/20/2020 - true, push
+        //-1 06/19/2020 is before 6/20/2020 - true, push
+        //1 06/25/2020 is after 06/20/2020 - true but dont push
 
         console.log("a1 - start:",a1,":",formatStart, a1.localeCompare(formatStart))
         //is a1 before or after formatStart?
-        //1
+        //1 06/18/2020 is after 06/14/2020 -  true, push
+        //1 06/19/2020 is after 06/14/2020 - true, push
+        //1 06/25/2020 is after 06/14/2020 - true, push
 
 
 
