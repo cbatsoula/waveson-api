@@ -111,16 +111,17 @@ class Notes extends React.Component {
 
 
 
+  formatDate = function(string) {
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    return new Date(string).toLocaleString([],options);
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
-    let formatDate = function(string) {
-      var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-      return new Date(string).toLocaleString([],options);
-    }
 
-    console.log("handleSubmit - formatDate on state", formatDate(this.state.startDate), formatDate(this.state.endDate))
-    // 
+
+    console.log("handleSubmit - formatDate on state", this.formatDate(this.state.startDate), this.formatDate(this.state.endDate))
+    //
     // let formatStart = formatDate(this.state.startDate)
     // let formatEnd = formatDate(this.state.endDate)
     // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
@@ -191,9 +192,15 @@ class Notes extends React.Component {
         }
         let a1 = format(justDate)
 
-        let formatStart = formatDate(this.state.startDate)
-        let formatEnd = formatDate(this.state.endDate)
+        let formatStart = this.formatDate(this.state.startDate)
+        let formatEnd = this.formatDate(this.state.endDate)
         console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
+        console.log("start", formatStart.localeCompare(a1))
+        //if this returns 1, that note comes after
+        //if this returns 0, that note is equal
+        //if it returns -1, that note comes beforee
+        console.log("end - a1", formatEnd.localeCompare(a1))
+        console.log("a1 - end", a1.localeCompare(formatEnd))
 
         compare.push(a1)
         holdMe.push(note)
