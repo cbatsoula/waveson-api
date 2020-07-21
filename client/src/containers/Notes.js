@@ -113,18 +113,31 @@ class Notes extends React.Component {
 
 
   handleSubmit = (event) => {
+    event.preventDefault();
     let formatDate = function(string) {
       var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
       return new Date(string).toLocaleString([],options);
     }
 
     console.log("handleSubmit - formatDate on state", formatDate(this.state.startDate), formatDate(this.state.endDate))
+    // 
+    // let formatStart = formatDate(this.state.startDate)
+    // let formatEnd = formatDate(this.state.endDate)
+    // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
 
-    event.preventDefault();
     console.log("submit!!", this.state, this.props);
 
     let holdMe = []
     let compare = []
+    let allNotes = this.state.allNotes
+    console.log("allNotes", allNotes)
+    // if the user selects to see notes from all beaches = show all Notes
+    // what if the user wants to see all Notes from one week?
+    if (this.state.selectBeach === "All"){
+      this.setState({
+        sortedNotes: allNotes,
+      }, () => {console.log("All!!", this.state)})
+    }
     let theseNotes = this.state.allNotes.map(note => {
     //i can either sort and spit with arrays in the backend or frontend
     //the cons of doing it in client is it will take a while for all this computing-i think
@@ -151,19 +164,11 @@ class Notes extends React.Component {
       //   //
       // }
 
-      // if the user selects to see notes from all beaches = show all Notes
-      // what if the user wants to see all Notes from one week?
-      if (this.state.selectBeach === "All"){
-        let allNotes = this.state.allNotes
-        console.log("allNotes", allNotes)
-        this.setState({
-          sortedNotes: allNotes,
-        }, () => {console.log("All!!", this.state)})
 
 
       // else, if the user selects a beach, show all notes from that beach
       //if this.state.startDate compare dates, sort notes and spit them out
-      } else if (note.beach_name === this.state.selectBeach) {
+      if (note.beach_name === this.state.selectBeach) {
         console.log("if", note)
         holdMe.push(note)
         console.log("holdMe", holdMe)
@@ -185,6 +190,11 @@ class Notes extends React.Component {
           return array.join('/') || null;
         }
         let a1 = format(justDate)
+
+        let formatStart = formatDate(this.state.startDate)
+        let formatEnd = formatDate(this.state.endDate)
+        console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
+
         compare.push(a1)
         holdMe.push(note)
 
