@@ -110,26 +110,49 @@ class Notes extends React.Component {
   }
 
 
-  //upon submit, i want to setState for the array of notes to pass down as props to AllNotes
-  //within AllNotes I want to map over each note and spit out a NoteCard comp. for each one. within this I should make an, if the case is "All" to map and return NoteCards, else, map and render sortedNotes as NoteCards
 
-
-
+  formatDate = function(string) {
+    var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    return new Date(string).toLocaleString([],options);
+  }
 
   handleSubmit = (event) => {
-    let formatDate = function(string) {
-      var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-      return new Date(string).toLocaleString([],options);
-    }
-
-    console.log("handleSubmit - formatDate on state", formatDate(this.state.startDate), formatDate(this.state.endDate))
-
     event.preventDefault();
+
+
+    console.log("handleSubmit - formatDate on state", this.formatDate(this.state.startDate), this.formatDate(this.state.endDate))
+    //
+    // let formatStart = formatDate(this.state.startDate)
+    // let formatEnd = formatDate(this.state.endDate)
+    // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
+
     console.log("submit!!", this.state, this.props);
 
     let holdMe = []
+    let compare = []
+    let allNotes = this.state.allNotes
+    console.log("allNotes", allNotes)
+    // if the user selects to see notes from all beaches = show all Notes
+    // what if the user wants to see all Notes from one week?
+    if (this.state.selectBeach === "All"){
+      this.setState({
+        sortedNotes: allNotes,
+      }, () => {console.log("All!!", this.state)})
+    }
     let theseNotes = this.state.allNotes.map(note => {
-      //it doesnt seem like i NEED a switch, I'd have two switch cases with just two or three cases so maybe a switch case is not my solution but a creative way to use if/else if/else with a nested if within the else if of beach name, and else if of date-time
+    //i can either sort and spit with arrays in the backend or frontend
+    //the cons of doing it in client is it will take a while for all this computing-i think
+    //the cons of doing in backend would be - more fetch requests which also take time but learning to manipulate more in the backend could be good for me as a developer bc its safer to do that generally speaking, my app doesnt hold sensitive data like that so I have less conseq.
+    //i miss rubber ducking talking out my code but studio lyfe means constant noise
+
+      //it does seem like i NEED a switch statement for at least three conditions
+      //All beaches
+        //all notes from all beaches
+        //some notes from all beaches based on time slot
+      //Selected beach
+        //all notes from selected
+        //some notes from selected beach based on time slot
+      //
 
       // switch (expression) {
       //   case x:
@@ -142,19 +165,11 @@ class Notes extends React.Component {
       //   //
       // }
 
-      // if the user selects to see notes from all beaches = show all Notes
-      // what if the user wants to see all Notes from one week?
-      if (this.state.selectBeach === "All"){
-        let allNotes = this.state.allNotes
-        console.log("allNotes", allNotes)
-        this.setState({
-          sortedNotes: allNotes,
-        }, () => {console.log("All!!", this.state)})
 
 
       // else, if the user selects a beach, show all notes from that beach
       //if this.state.startDate compare dates, sort notes and spit them out
-      } else if (note.beach_name === this.state.selectBeach) {
+      if (note.beach_name === this.state.selectBeach) {
         console.log("if", note)
         holdMe.push(note)
         console.log("holdMe", holdMe)
@@ -168,15 +183,56 @@ class Notes extends React.Component {
         let formatDate = note.created_at.split("T")
         let justDate = formatDate.shift()
 
+
         console.log("and we have ", justDate)
         var format = function(input) {
           var array = (input || '').toString().split(/\-/g);
           array.push(array.shift());
           return array.join('/') || null;
         }
+        let a1 = format(justDate)
 
-        console.log("LETS DO THIS NOW MERCY I CAN NOT ALLOW LETS DO THIS NOW")
-        console.log("format!!!!!!!", format(justDate));
+        let formatStart = this.formatDate(this.state.startDate)
+        let formatEnd = this.formatDate(this.state.endDate)
+        console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
+
+        // refSTR.localeCompare(compSTR)
+        // -1 if referenceStr occurs before compareString;
+        // 1 if the referenceStr occurs after compareString;
+        // 0 if they are equivalent;
+
+        console.log("start", formatStart.localeCompare(a1))
+        //is formatStart before or after a1?
+        //1 fs 06/19/2020 is after 06/18/2020 a1 - do not push
+        //1 fs 06/19/2020 is ...after 06/19/2020 a1 .... push
+        //1 fs 06/19/2020 is after 06/25/2020...not true
+
+        console.log("end - a1", formatEnd.localeCompare(a1))
+        // is formatEnd before or after a1?
+        //1 06/24/2020 is after 06/18/2020 a1 - push
+        //1 fe 06/24/2020 is after 06/19/2020 a1 - push
+        //1 fe 06/24/2020 is after 06/25/2020 not true
+
+        console.log("a1 - end", a1.localeCompare(formatEnd))
+        //is a1 before or after formatEnd?
+        //-1 06/18/2020 is before 06/24/2020 - push
+        //-1 06/19/2020 is before 06/24/2020 - push
+        //-1 06/25/2020 is before 06/24/2020 not true
+
+        console.log("a1 - start", a1.localeCompare(formatStart))
+        //is a1 before or after formatStart?
+        //1
+
+
+
+        //if this returns 1, that note comes after
+        //if this returns 0, that note is equal
+        //if it returns -1, that note comes beforee
+
+        compare.push(a1)
+        holdMe.push(note)
+
+        console.log("compare array", compare)
         console.log(format('2000-12-01'));
         debugger;
 
