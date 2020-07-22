@@ -219,8 +219,22 @@ class Notes extends React.Component {
         //-1 06/18/2020 is before 06/20/2020 - true, push
         //-1 06/19/2020 is before 6/20/2020 - true, push
         //1 06/25/2020 is after 06/20/2020 - true but dont push
-
+        //so if a1.localeCompare(formatEnd) === -1
+        if (a1.localeCompare(formatEnd) === -1){
+          console.log("a1 - end === -1 push")
+        }
         console.log("a1 - start:",a1,":",formatStart, a1.localeCompare(formatStart))
+
+        if (a1.localeCompare(formatStart) === 1){
+          console.log("a1 - start === 1 push")
+        }
+
+        if (a1.localeCompare(formatStart) >= 1 && a1.localeCompare(formatEnd) <= -1){
+          holdMe.push(note)
+          console.log("holdMe", holdMe)
+          return note
+          console.log("a1 - start === 1 push && a1 - end === -1")
+        }
         //is a1 before or after formatStart?
         //1 06/18/2020 is after 06/14/2020 -  true, push
         //1 06/19/2020 is after 06/14/2020 - true, push
@@ -228,16 +242,17 @@ class Notes extends React.Component {
 
 
 
+
         //if this returns 1, that note comes after
         //if this returns 0, that note is equal
         //if it returns -1, that note comes beforee
 
-        compare.push(a1)
-        holdMe.push(note)
-
-        console.log("compare array", compare)
-        console.log(format('2000-12-01'));
+        // compare.push(a1)
+        // holdMe.push(note)
         debugger;
+
+        // console.log("compare array", compare)
+        // console.log(format('2000-12-01'));
 
         //if no selection, show nothing
       } else {
