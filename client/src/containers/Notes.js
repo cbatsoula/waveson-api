@@ -252,6 +252,9 @@ class Notes extends React.Component {
       this.setState({
         sortedNotes: holdMe,
         toggle: true,
+        startDate: new Date(),
+        endDate: new Date(),
+
       })
 
     }
