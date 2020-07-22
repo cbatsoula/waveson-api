@@ -98,9 +98,6 @@ class Notes extends React.Component {
     // let notes = this.state.allNotes.map( note => {
     //   return note.created_at
     // })
-
-
-
   };
 
   handleEndChange = date => {
@@ -109,22 +106,15 @@ class Notes extends React.Component {
     }, () => {console.log("end change", this.state)})
   }
 
-
-
   formatDate = function(string) {
-    var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    var options = { year: 'numeric', month: '2-digit', day: 'numeric' };
     return new Date(string).toLocaleString([],options);
+    // 2-digit
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-
-
     console.log("handleSubmit - formatDate on state", this.formatDate(this.state.startDate), this.formatDate(this.state.endDate))
-    //
-    // let formatStart = formatDate(this.state.startDate)
-    // let formatEnd = formatDate(this.state.endDate)
-    // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
 
     console.log("submit!!", this.state, this.props);
 
@@ -194,49 +184,65 @@ class Notes extends React.Component {
 
         let formatStart = this.formatDate(this.state.startDate)
         let formatEnd = this.formatDate(this.state.endDate)
-        console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
+        // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
 
         // refSTR.localeCompare(compSTR)
         // -1 if referenceStr occurs before compareString;
         // 1 if the referenceStr occurs after compareString;
         // 0 if they are equivalent;
 
-        console.log("start", formatStart.localeCompare(a1))
+        // console.log("start - a1:",formatStart,":",a1, formatStart.localeCompare(a1))
         //is formatStart before or after a1?
-        //1 fs 06/19/2020 is after 06/18/2020 a1 - do not push
-        //1 fs 06/19/2020 is ...after 06/19/2020 a1 .... push
-        //1 fs 06/19/2020 is after 06/25/2020...not true
-
-        console.log("end - a1", formatEnd.localeCompare(a1))
+        //-1 06/14/2020 is before 06/18/2020 - true, push
+        //-1 06/14/2020 is before 06/19/2020 - true, push
+        //-1 06/14/2020 is before 06/25/2020 - true, but a1 is after fE
+        //
+        // console.log("end - a1:",formatEnd,":",a1, formatEnd.localeCompare(a1))
         // is formatEnd before or after a1?
-        //1 06/24/2020 is after 06/18/2020 a1 - push
-        //1 fe 06/24/2020 is after 06/19/2020 a1 - push
-        //1 fe 06/24/2020 is after 06/25/2020 not true
-
-        console.log("a1 - end", a1.localeCompare(formatEnd))
+        //1 06/20/2020 is after 06/18/2020 -  true, push
+        //1 06/20/2020 is after 06/19/2020 ...not
+        //-1 06/20/2020 is before 06/25/2020 - true, but dont push
+        //
+        // console.log("a1 - end:",a1,":",formatEnd, a1.localeCompare(formatEnd))
         //is a1 before or after formatEnd?
-        //-1 06/18/2020 is before 06/24/2020 - push
-        //-1 06/19/2020 is before 06/24/2020 - push
-        //-1 06/25/2020 is before 06/24/2020 not true
+        //-1 06/18/2020 is before 06/20/2020 - true, push
+        //-1 06/19/2020 is before 6/20/2020 - true, push
+        //1 06/25/2020 is after 06/20/2020 - true but dont push
+        //so if a1.localeCompare(formatEnd) === -1
 
-        console.log("a1 - start", a1.localeCompare(formatStart))
+        // if (a1.localeCompare(formatEnd) === -1){
+        //   console.log("a1 - end === -1 push")
+        // }
+        // console.log("a1 - start:",a1,":",formatStart, a1.localeCompare(formatStart))
+        //
+        // if (a1.localeCompare(formatStart) === 1){
+        //   console.log("a1 - start === 1 push")
+        // }
+
+        if (a1.localeCompare(formatStart) >= 1 && a1.localeCompare(formatEnd) <= -1){
+          holdMe.push(note)
+          console.log("holdMe", holdMe)
+          return note
+          console.log("a1 - start === 1 push && a1 - end === -1")
+        } else if (a1.localeCompare(formatStart) === 0 || a1.localeCompare(formatEnd) ===0) {
+          holdMe.push(note)
+          console.log("holdMe", holdMe)
+          return note
+          console.log("a1 - start === 0 push && a1 - end === 0")
+        }
         //is a1 before or after formatStart?
-        //1
-
+        //1 06/18/2020 is after 06/14/2020 -  true, push
+        //1 06/19/2020 is after 06/14/2020 - true, push
+        //1 06/25/2020 is after 06/14/2020 - true, push
 
 
         //if this returns 1, that note comes after
         //if this returns 0, that note is equal
         //if it returns -1, that note comes beforee
 
-        compare.push(a1)
-        holdMe.push(note)
-
-        console.log("compare array", compare)
-        console.log(format('2000-12-01'));
+        // compare.push(a1)
+        // holdMe.push(note)
         debugger;
-
-        //if no selection, show nothing
       } else {
           console.log("nah", note)
         }
