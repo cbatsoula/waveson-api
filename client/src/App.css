@@ -445,7 +445,7 @@ button:active {
 
   display: flex;
   background-color: #639898;
-  height: 100%;
+  height: auto;
   width: 100%;
   justify-content: center;
   align-items: center;
@@ -605,10 +605,38 @@ input[type=submit] {
   background-repeat: no-repeat;
 
   /* margin: auto; */
-  animation: Loader infinite 20s linear;
+  animation: Loader infinite 10s linear;
 
 }
 
+@keyframes Loader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(600deg);
+  }
+}
+
+@media screen and (max-width:760px){
+  .Loader {
+    /* For mobile phones: */
+
+    height:50%;
+    width: 50%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 10px;
+
+    animation: Loader infinite 10s linear;
+
+  }
+}
 @keyframes Loader {
   from {
     transform: rotate(0deg);
@@ -629,5 +657,14 @@ input[type=submit] {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+
+}
+
+.AllNotesS {
+  display: flex;
+  height: auto;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
 
 }
