@@ -4,7 +4,7 @@ import Banner from '../components/Banner';
 import AllNotesFilter from './AllNotesFilter';
 import AllNotes from './AllNotes';
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css" from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import moment from 'moment';
 
 class Notes extends React.Component {
