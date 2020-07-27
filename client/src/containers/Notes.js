@@ -160,10 +160,39 @@ class Notes extends React.Component {
       // else, if the user selects a beach, show all notes from that beach
       //if this.state.startDate compare dates, sort notes and spit them out
       if (note.beach_name === this.state.selectBeach) {
-        console.log("if", note)
-        holdMe.push(note)
-        console.log("holdMe", holdMe)
-        return note
+        // console.log("if", note)
+        // holdMe.push(note)
+        // console.log("holdMe", holdMe)
+        // return note
+        if (this.state.startDate && this.state.endDate) {
+          console.log("if - if beachname - time")
+          let formatDate = note.created_at.split("T")
+          let justDate = formatDate.shift()
+
+
+          console.log("and we have ", justDate)
+          var format = function(input) {
+            var array = (input || '').toString().split(/\-/g);
+            array.push(array.shift());
+            return array.join('/') || null;
+          }
+          let a1 = format(justDate)
+          let formatStart = this.formatDate(this.state.startDate)
+          let formatEnd = this.formatDate(this.state.endDate)
+          if (a1.localeCompare(formatStart) >= 1 && a1.localeCompare(formatEnd) <= -1){
+            holdMe.push(note)
+            console.log("holdMe", holdMe)
+            return note
+            console.log("a1 - start === 1 push && a1 - end === -1")
+          } else if (a1.localeCompare(formatStart) === 0 || a1.localeCompare(formatEnd) ===0) {
+            holdMe.push(note)
+            console.log("holdMe", holdMe)
+            return note
+            console.log("a1 - start === 0 push && a1 - end === 0")
+          }
+
+        }
+
 
 
       //else, if the user selects a time period, show notes from that time period (layers on top of or after the previous, so all notes from THAT beach under this time)
@@ -184,6 +213,7 @@ class Notes extends React.Component {
 
         let formatStart = this.formatDate(this.state.startDate)
         let formatEnd = this.formatDate(this.state.endDate)
+
         // console.log("COMPARE TO NOTE'S DATE - A1", formatStart, formatEnd)
 
         // refSTR.localeCompare(compSTR)
@@ -238,13 +268,10 @@ class Notes extends React.Component {
 
         //if this returns 1, that note comes after
         //if this returns 0, that note is equal
-        //if it returns -1, that note comes beforee
-
-        // compare.push(a1)
-        // holdMe.push(note)
-        debugger;
+        //if it returns -1, that note comes before
       } else {
           console.log("nah", note)
+
         }
       })
       console.log("theseNotes", theseNotes, this.state, holdMe)
