@@ -195,13 +195,12 @@ class Notes extends React.Component {
 
 
 
-      //else, if the user selects a time period, show notes from that time period (layers on top of or after the previous, so all notes from THAT beach under this time)
+      //else, if the user selects a time period, show notes from that time period
       //this would NOT layer on top of if All beaches are selected
-      } else if (this.state.startDate && this.state.endDate){
+    } else if (this.state.selectBeach === "All" && this.state.startDate && this.state.endDate){
         console.log("else if", this.state)
         let formatDate = note.created_at.split("T")
         let justDate = formatDate.shift()
-
 
         console.log("and we have ", justDate)
         var format = function(input) {

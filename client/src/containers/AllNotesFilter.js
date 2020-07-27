@@ -24,14 +24,14 @@ class AllNotesFilter extends React.Component {
     return (
       <div className="AllNotesFilter-Container">
         <form onSubmit={this.props.handleSubmit}>
-        <h3>Filter by...</h3>
+        <h3>Filter by</h3>
         <label>Beach</label>
           <select value={this.props.selectBeach} onChange={this.props.handleBeachChange}>
             <option value="Select" onChange={this.props.handleBeachChange}>Select</option>
             <option value="All" onChange={this.props.handleBeachChange}>All</option>
            {this.sortedList()}
-          </select>
-        // <label>Between these dates</label>
+          </select><br />
+        <label>Between these dates</label>
           <DatePicker
           placeholderText="Click to select a date"
           dateFormat="MM/dd/yyyy"

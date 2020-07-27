@@ -8,20 +8,6 @@ class AllNotes extends React.Component {
 
   }
 
-  // renderNotes = () => {
-  //
-  //   if (this.props.selectBeach === "all"){
-  //     return this.props.allNotes.map( note => {
-  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
-  //     })
-  //   } else {
-  //     return this.props.sortedNotes.map( note => {
-  //       return <NoteCard allBeaches={this.props.allBeaches} note={note} key={note.id} />
-  //   })
-  // }
-  //
-  // }
-
 
   componentDidMount = () => {
 
